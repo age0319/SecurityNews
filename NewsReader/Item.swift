@@ -14,16 +14,22 @@ class Item {
     var dateString = ""
     var date: Date = Date()
     
-   func convert_string_to_date() {
-    // Set the date formatter and optionally set the formatted date from string
-    let dateFormatter = DateFormatter()
-    dateFormatter.locale = NSLocale(localeIdentifier: "en_US_POSIX") as Locale
-    dateFormatter.dateFormat = "E, d MMM yyyy HH:mm:ss Z"
-    print(self.dateString)
-    if let date = dateFormatter.date(from: self.dateString) {
+    func convert_string_to_date(currentString: String) {
+        // Set the date formatter and optionally set the formatted date from string
+        let dateFormatter = DateFormatter()
+        dateFormatter.locale = NSLocale(localeIdentifier: "en_US_POSIX") as Locale
+        dateFormatter.dateFormat = "E, d MMM yyyy HH:mm:ss Z"
+        if let date = dateFormatter.date(from: currentString) {
            self.date = date
-       }
-//    print(self.date)
+        }
     
    }
+    
+    func convert_date_to_string(){
+        let dateFormatter = DateFormatter()
+        dateFormatter.locale = NSLocale(localeIdentifier: "en_US_POSIX") as Locale
+        dateFormatter.dateFormat = "yyyy/MM/dd HH:mm"
+        self.dateString = dateFormatter.string(from: self.date)
+    }
+
 }

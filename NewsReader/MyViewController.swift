@@ -69,8 +69,8 @@ class MyViewController: UITableViewController,XMLParserDelegate{
         case "link":
             self.item?.link = currentstring
         case "pubDate":
-            self.item?.dateString = currentstring
-            self.item?.convert_string_to_date()
+            self.item?.convert_string_to_date(currentString: currentstring)
+            self.item?.convert_date_to_string()
         case "item":
             self.items.append(self.item!)
         default:
