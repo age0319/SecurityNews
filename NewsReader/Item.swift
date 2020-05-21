@@ -23,7 +23,7 @@ class Item {
     if let date = dateFormatter.date(from: self.dateString) {
            self.date = date
        }
-    print(self.date)
+//    print(self.date)
     
    }
 }
