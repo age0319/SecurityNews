@@ -28,7 +28,7 @@ class Item {
     func convert_date_to_string(){
         let dateFormatter = DateFormatter()
         dateFormatter.locale = NSLocale(localeIdentifier: "en_US_POSIX") as Locale
-        dateFormatter.dateFormat = "yyyy/MM/dd HH:mm"
+        dateFormatter.dateFormat = "MM/dd HH:mm"
         self.dateString = dateFormatter.string(from: self.date)
     }
 

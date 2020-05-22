@@ -8,6 +8,10 @@
 
 import UIKit
 
+class MyTableViewCell: UITableViewCell {
+    @IBOutlet weak var articleTitleLabel: UILabel!
+    @IBOutlet weak var articleDateLabel: UILabel!
+}
 
 class MyViewController: UITableViewController,XMLParserDelegate{
     
@@ -21,10 +25,9 @@ class MyViewController: UITableViewController,XMLParserDelegate{
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath)
-        cell.textLabel?.numberOfLines = 0
-        cell.textLabel?.text = items[indexPath.row].title + "(" + items[indexPath.row].dateString + ")"
-//        cell.textLabel?.text = items[indexPath.row].title
+        let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath) as! MyTableViewCell
+        cell.articleTitleLabel?.text = items[indexPath.row].title
+        cell.articleDateLabel?.text = items[indexPath.row].dateString
         return cell
     }
     
