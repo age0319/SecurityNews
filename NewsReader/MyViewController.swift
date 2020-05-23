@@ -35,6 +35,10 @@ class MyViewController: UITableViewController,XMLParserDelegate{
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
+    }
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
         startDownload()
     }
     
@@ -49,9 +53,8 @@ class MyViewController: UITableViewController,XMLParserDelegate{
                     "https://scan.netsecurity.ne.jp/rss/index.rdf",
                     "https://www.lac.co.jp/lacwatch/feed.xml"]
         
-        for i in 0 ..< urls.count {
-            if let url = URL(
-                string: urls[i]){
+        for urlString in urls {
+            if let url = URL(string: urlString){
                 if let parser = XMLParser(contentsOf: url){
                     self.parser = parser
                     self.parser.delegate = self
