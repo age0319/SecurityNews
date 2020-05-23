@@ -11,6 +11,7 @@ import UIKit
 class MyTableViewCell: UITableViewCell {
     @IBOutlet weak var articleTitleLabel: UILabel!
     @IBOutlet weak var articleDateLabel: UILabel!
+    @IBOutlet weak var articleSourceLabel: UILabel!
 }
 
 class MyViewController: UITableViewController,XMLParserDelegate{
@@ -28,6 +29,7 @@ class MyViewController: UITableViewController,XMLParserDelegate{
         let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath) as! MyTableViewCell
         cell.articleTitleLabel?.text = items[indexPath.row].title
         cell.articleDateLabel?.text = items[indexPath.row].dateString
+        cell.articleSourceLabel?.text = items[indexPath.row].source
         return cell
     }
     
@@ -36,11 +38,16 @@ class MyViewController: UITableViewController,XMLParserDelegate{
         startDownload()
     }
     
+    
     func startDownload(){
         self.items = []
         let urls = ["http://www.security-next.com/feed",
                     "http://feeds.trendmicro.com/TM-Securityblog/",
-                    "https://rss.itmedia.co.jp/rss/2.0/news_security.xml"]
+                    "https://rss.itmedia.co.jp/rss/2.0/news_security.xml",
+                    "https://ccsi.jp/category/%E3%82%BB%E3%82%AD%E3%83%A5%E3%83%AA%E3%83%86%E3%82%A3%E3%83%8B%E3%83%A5%E3%83%BC%E3%82%B9/feed/",
+                    "https://www.ipa.go.jp/security/rss/info.rdf",
+                    "https://scan.netsecurity.ne.jp/rss/index.rdf",
+                    "https://www.lac.co.jp/lacwatch/feed.xml"]
         
         for i in 0 ..< urls.count {
             if let url = URL(
@@ -71,8 +78,12 @@ class MyViewController: UITableViewController,XMLParserDelegate{
             self.item?.title = currentstring
         case "link":
             self.item?.link = currentstring
+            self.item?.check_source()
         case "pubDate":
-            self.item?.convert_string_to_date(currentString: currentstring)
+            self.item?.convert_pubdate_date(currentString: currentstring)
+            self.item?.convert_date_to_string()
+        case "dc:date":
+            self.item?.convert_dcdate_date(currentString: currentstring)
             self.item?.convert_date_to_string()
         case "item":
             self.items.append(self.item!)
@@ -82,15 +93,9 @@ class MyViewController: UITableViewController,XMLParserDelegate{
     }
     
     func parserDidEndDocument(_ parser: XMLParser) {
-        
         items = items.sorted(by: {
             $0.date.compare($1.date) == .orderedDescending
         })
-        
-//        for obj in soted_items {
-//            print("Sorted Date: \(obj.date) with title: \(obj.title)")
-//        }
-        
         self.tableView.reloadData()
     }
     
