@@ -69,6 +69,9 @@
                         </prototypes>
                     </tableView>
                     <navigationItem key="navigationItem" title="一覧" id="BjS-rN-d10"/>
+                    <connections>
+                        <outlet property="table" destination="KRm-wJ-DjZ" id="uxD-hL-XxI"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>

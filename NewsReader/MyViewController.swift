@@ -21,6 +21,16 @@ class MyViewController: UITableViewController,XMLParserDelegate{
     var item:Item?
     var currentstring = ""
     
+    @IBOutlet var table: UITableView!    
+    let myRefreshControl = UIRefreshControl()
+
+    
+    @objc private func refresh(sender: UIRefreshControl){
+        startDownload()
+        table.reloadData()
+        sender.endRefreshing()
+    }
+    
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return items.count
     }
@@ -40,6 +50,8 @@ class MyViewController: UITableViewController,XMLParserDelegate{
     override func viewDidLoad() {
         super.viewDidLoad()
         startDownload()
+        table.refreshControl = myRefreshControl
+        myRefreshControl.addTarget(self, action: #selector(refresh(sender:)), for: .valueChanged)
     }
     
     
