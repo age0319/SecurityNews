@@ -19,7 +19,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		B19EBD3E247349BE00DB7AB4 /* NewsReader.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = NewsReader.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		B19EBD3E247349BE00DB7AB4 /* SecurityNews.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SecurityNews.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B19EBD41247349BE00DB7AB4 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		B19EBD43247349BE00DB7AB4 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		B19EBD48247349BE00DB7AB4 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -56,7 +56,7 @@
 		B19EBD3F247349BE00DB7AB4 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				B19EBD3E247349BE00DB7AB4 /* NewsReader.app */,
+				B19EBD3E247349BE00DB7AB4 /* SecurityNews.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -102,7 +102,7 @@
 			);
 			name = NewsReader;
 			productName = NewsReader;
-			productReference = B19EBD3E247349BE00DB7AB4 /* NewsReader.app */;
+			productReference = B19EBD3E247349BE00DB7AB4 /* SecurityNews.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -311,8 +311,8 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.gmail.at.mc1.18.NewsReader;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_BUNDLE_IDENTIFIER = com.gmail.at.mc1.18.SecurityNews;
+				PRODUCT_NAME = SecurityNews;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -329,8 +329,8 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.gmail.at.mc1.18.NewsReader;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_BUNDLE_IDENTIFIER = com.gmail.at.mc1.18.SecurityNews;
+				PRODUCT_NAME = SecurityNews;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
