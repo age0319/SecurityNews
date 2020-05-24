@@ -20,8 +20,8 @@ class MyViewController: UITableViewController,XMLParserDelegate{
     var items = [Item]()
     var item:Item?
     var currentstring = ""
-    
-    @IBOutlet var table: UITableView!    
+    @IBOutlet weak var spinner: UIActivityIndicatorView!
+    @IBOutlet var table: UITableView!
     let myRefreshControl = UIRefreshControl()
 
     
@@ -49,13 +49,24 @@ class MyViewController: UITableViewController,XMLParserDelegate{
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        startDownload()
+        spinner.startAnimating()
+        let globalQueue = DispatchQueue.global(
+                      qos: DispatchQoS.QoSClass.userInitiated)
+              globalQueue.async { [ weak self] in
+                self?.startDownload()
+              DispatchQueue.main.async {
+                self?.spinner.stopAnimating()
+                self?.table.reloadData()
+              }
+        }
+        
         table.refreshControl = myRefreshControl
         myRefreshControl.addTarget(self, action: #selector(refresh(sender:)), for: .valueChanged)
     }
     
     
     func startDownload(){
+        
         self.items = []
         let urls = ["http://www.security-next.com/feed",
                     "http://feeds.trendmicro.com/TM-Securityblog/",
@@ -74,6 +85,10 @@ class MyViewController: UITableViewController,XMLParserDelegate{
                 }
             }
         }
+        
+        items = items.sorted(by: {
+            $0.date.compare($1.date) == .orderedDescending
+        })
     }
     
     func parser(_ parser: XMLParser, didStartElement elementName: String, namespaceURI: String?, qualifiedName qName: String?, attributes attributeDict: [String : String] = [:]) {
@@ -108,10 +123,7 @@ class MyViewController: UITableViewController,XMLParserDelegate{
     }
     
     func parserDidEndDocument(_ parser: XMLParser) {
-        items = items.sorted(by: {
-            $0.date.compare($1.date) == .orderedDescending
-        })
-        self.tableView.reloadData()
+    
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
