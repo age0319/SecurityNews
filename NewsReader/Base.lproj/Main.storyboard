@@ -76,7 +76,7 @@
                                     <outlet property="articleDateLabel" destination="kZn-iC-lfv" id="aAH-PD-gqd"/>
                                     <outlet property="articleSourceLabel" destination="cei-sR-bnQ" id="tyq-vu-Fma"/>
                                     <outlet property="articleTitleLabel" destination="0YP-9F-ouC" id="4c4-su-RcH"/>
-                                    <outlet property="favButton" destination="pGW-dQ-GEF" id="5lx-Tc-FBq"/>
+                                    <outlet property="favorateButton" destination="pGW-dQ-GEF" id="3tf-IK-9rV"/>
                                     <segue destination="kSm-ad-6UA" kind="show" id="EsN-q8-lCb"/>
                                 </connections>
                             </tableViewCell>

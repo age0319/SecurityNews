@@ -20,8 +20,8 @@ class MyTableViewCell: UITableViewCell {
     @IBOutlet weak var articleTitleLabel: UILabel!
     @IBOutlet weak var articleDateLabel: UILabel!
     @IBOutlet weak var articleSourceLabel: UILabel!
-    @IBOutlet weak var favButton: UIButton!
-
+    @IBOutlet weak var favorateButton: UIButton!
+    
     //delegateの関数はViewContrtrollerに記載されている
     var delegte: ArticleCellDelegate?
     
@@ -34,5 +34,14 @@ class MyTableViewCell: UITableViewCell {
     
     @IBAction func touch(_ sender: Any) {
         delegte?.didReadLator(title: self.item.title)
+
+        favorateButton.setImage(UIImage(named: "star.fill")?.withRenderingMode(.alwaysOriginal), for: [])
+
+//        if favorateButton.currentImage == UIImage(named: "star"){
+//            favorateButton.setImage(UIImage(named: "star.fill")?.withRenderingMode(.alwaysOriginal), for: [])
+//        }else{
+//            favorateButton.setImage(UIImage(named:
+//                "star")?.withRenderingMode(.alwaysOriginal), for: [])
+//        }
     }
 }
