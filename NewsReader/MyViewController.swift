@@ -8,35 +8,8 @@
 
 import UIKit
 
-protocol ArticleCellDelegate {
-    func didReadLator(title: String)
-}
 
-class MyTableViewCell: UITableViewCell {
-    
-    var item:Item!
-    
-    @IBOutlet weak var articleTitleLabel: UILabel!
-    @IBOutlet weak var articleDateLabel: UILabel!
-    @IBOutlet weak var articleSourceLabel: UILabel!
-    @IBOutlet weak var favButton: UIButton!
-
-    var delegte: ArticleCellDelegate?
-    
-    
-    func setArticle(item: Item){
-        self.item = item
-        articleTitleLabel?.text = item.title
-        articleDateLabel?.text = item.dateString
-        articleSourceLabel?.text = item.source
-    }
-    
-    @IBAction func touch(_ sender: Any) {
-        delegte?.didReadLator(title: self.item.title)
-    }
-}
-
-class MyViewController: UITableViewController{
+class MyViewController: UITableViewController, ArticleCellDelegate{
     
     @IBOutlet weak var spinner: UIActivityIndicatorView!
     @IBOutlet var table: UITableView!
@@ -92,6 +65,17 @@ class MyViewController: UITableViewController{
             }
         }
     }
+    
+    // プロトコルに批准して処理を記載。実行はCell内のお気に入りボタンがタッチされた時。
+    func didReadLator(title: String) {
+           print(title)
+           let alertTitle = "Watch Later"
+           let message = "\(title) added to Watch Later List"
+           
+           let alert = UIAlertController(title: alertTitle, message: message, preferredStyle: .alert)
+           alert.addAction(UIAlertAction(title: "Ok", style: .default, handler: nil))
+           present(alert, animated: true, completion: nil)
+       }
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if let indexPath = self.tableView.indexPathForSelectedRow{
@@ -102,16 +86,4 @@ class MyViewController: UITableViewController{
         }
     }
 
-}
-
-extension MyViewController: ArticleCellDelegate{
-    func didReadLator(title: String) {
-        print(title)
-        let alertTitle = "Watch Later"
-        let message = "\(title) added to Watch Later List"
-        
-        let alert = UIAlertController(title: alertTitle, message: message, preferredStyle: .alert)
-        alert.addAction(UIAlertAction(title: "Ok", style: .default, handler: nil))
-        present(alert, animated: true, completion: nil)
-    }
 }
