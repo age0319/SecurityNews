@@ -8,13 +8,6 @@
 
 import UIKit
 
-class MyTableViewCell: UITableViewCell {
-    @IBOutlet weak var articleTitleLabel: UILabel!
-    @IBOutlet weak var articleDateLabel: UILabel!
-    @IBOutlet weak var articleSourceLabel: UILabel!
-}
-
-
 class MyViewController: UITableViewController{
     
     @IBOutlet weak var spinner: UIActivityIndicatorView!

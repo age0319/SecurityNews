@@ -21,15 +21,15 @@
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         </activityIndicatorView>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="Cell" id="snm-6I-XlN" customClass="MyTableViewCell" customModule="SecurityNews" customModuleProvider="target">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="Cell" id="snm-6I-XlN" customClass="MyTableViewCell" customModule="SecurityNews" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="28" width="414" height="100"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="snm-6I-XlN" id="Rmf-0O-ZrO">
-                                    <rect key="frame" x="0.0" y="0.0" width="383" height="100"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="414" height="100"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0YP-9F-ouC">
-                                            <rect key="frame" x="12" y="5" width="369" height="63"/>
+                                            <rect key="frame" x="12" y="5" width="363" height="63"/>
                                             <constraints>
                                                 <constraint firstAttribute="height" constant="63" id="vt2-87-Kbl"/>
                                             </constraints>
@@ -38,7 +38,7 @@
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kZn-iC-lfv">
-                                            <rect key="frame" x="292" y="80" width="86" height="17"/>
+                                            <rect key="frame" x="311" y="80" width="86" height="17"/>
                                             <constraints>
                                                 <constraint firstAttribute="width" constant="86" id="1kN-Wu-I1q"/>
                                                 <constraint firstAttribute="height" constant="17" id="MNR-hG-aZY"/>
@@ -51,13 +51,19 @@
                                             <fontDescription key="fontDescription" type="system" pointSize="10"/>
                                             <nil key="highlightedColor"/>
                                         </label>
+                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="DEn-J3-ah1">
+                                            <rect key="frame" x="381" y="39" width="19" height="22"/>
+                                            <state key="normal" image="star"/>
+                                        </button>
                                     </subviews>
                                     <constraints>
                                         <constraint firstItem="cei-sR-bnQ" firstAttribute="leading" secondItem="Rmf-0O-ZrO" secondAttribute="leadingMargin" constant="6" id="7Cw-eL-xpt"/>
+                                        <constraint firstItem="DEn-J3-ah1" firstAttribute="trailing" secondItem="0YP-9F-ouC" secondAttribute="trailing" constant="25" id="D6O-4v-8Hp"/>
                                         <constraint firstAttribute="trailingMargin" secondItem="kZn-iC-lfv" secondAttribute="trailing" constant="-3" id="Hpb-7r-G2G"/>
-                                        <constraint firstAttribute="trailingMargin" secondItem="0YP-9F-ouC" secondAttribute="trailing" constant="-6" id="RXA-6q-D0L"/>
+                                        <constraint firstAttribute="trailingMargin" secondItem="0YP-9F-ouC" secondAttribute="trailing" constant="19" id="RXA-6q-D0L"/>
                                         <constraint firstItem="cei-sR-bnQ" firstAttribute="top" secondItem="0YP-9F-ouC" secondAttribute="bottom" constant="14" id="XkF-Ub-cwm"/>
                                         <constraint firstItem="0YP-9F-ouC" firstAttribute="top" secondItem="Rmf-0O-ZrO" secondAttribute="topMargin" constant="-6" id="dvE-7n-gnr"/>
+                                        <constraint firstItem="DEn-J3-ah1" firstAttribute="centerY" secondItem="Rmf-0O-ZrO" secondAttribute="centerY" id="ih6-2E-C9E"/>
                                         <constraint firstItem="cei-sR-bnQ" firstAttribute="centerY" secondItem="kZn-iC-lfv" secondAttribute="centerY" id="o5F-29-0nh"/>
                                         <constraint firstItem="kZn-iC-lfv" firstAttribute="top" secondItem="0YP-9F-ouC" secondAttribute="bottom" constant="12" id="s03-qh-hPg"/>
                                         <constraint firstItem="0YP-9F-ouC" firstAttribute="leading" secondItem="Rmf-0O-ZrO" secondAttribute="leadingMargin" constant="-8" id="zwL-Kc-JaU"/>
@@ -136,4 +142,7 @@
             <point key="canvasLocation" x="131.8840579710145" y="138.61607142857142"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="star" width="19" height="18"/>
+    </resources>
 </document>
