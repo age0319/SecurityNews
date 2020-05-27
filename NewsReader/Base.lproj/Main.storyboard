@@ -51,21 +51,24 @@
                                             <fontDescription key="fontDescription" type="system" pointSize="10"/>
                                             <nil key="highlightedColor"/>
                                         </label>
-                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="DEn-J3-ah1">
-                                            <rect key="frame" x="381" y="39" width="19" height="22"/>
+                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pGW-dQ-GEF">
+                                            <rect key="frame" x="375" y="39" width="19" height="22"/>
                                             <state key="normal" image="star"/>
+                                            <connections>
+                                                <action selector="touch:" destination="snm-6I-XlN" eventType="touchUpInside" id="Dnv-v4-fS7"/>
+                                            </connections>
                                         </button>
                                     </subviews>
                                     <constraints>
                                         <constraint firstItem="cei-sR-bnQ" firstAttribute="leading" secondItem="Rmf-0O-ZrO" secondAttribute="leadingMargin" constant="6" id="7Cw-eL-xpt"/>
-                                        <constraint firstItem="DEn-J3-ah1" firstAttribute="trailing" secondItem="0YP-9F-ouC" secondAttribute="trailing" constant="25" id="D6O-4v-8Hp"/>
+                                        <constraint firstItem="pGW-dQ-GEF" firstAttribute="centerY" secondItem="Rmf-0O-ZrO" secondAttribute="centerY" id="7jl-Fd-k7g"/>
                                         <constraint firstAttribute="trailingMargin" secondItem="kZn-iC-lfv" secondAttribute="trailing" constant="-3" id="Hpb-7r-G2G"/>
                                         <constraint firstAttribute="trailingMargin" secondItem="0YP-9F-ouC" secondAttribute="trailing" constant="19" id="RXA-6q-D0L"/>
                                         <constraint firstItem="cei-sR-bnQ" firstAttribute="top" secondItem="0YP-9F-ouC" secondAttribute="bottom" constant="14" id="XkF-Ub-cwm"/>
                                         <constraint firstItem="0YP-9F-ouC" firstAttribute="top" secondItem="Rmf-0O-ZrO" secondAttribute="topMargin" constant="-6" id="dvE-7n-gnr"/>
-                                        <constraint firstItem="DEn-J3-ah1" firstAttribute="centerY" secondItem="Rmf-0O-ZrO" secondAttribute="centerY" id="ih6-2E-C9E"/>
                                         <constraint firstItem="cei-sR-bnQ" firstAttribute="centerY" secondItem="kZn-iC-lfv" secondAttribute="centerY" id="o5F-29-0nh"/>
                                         <constraint firstItem="kZn-iC-lfv" firstAttribute="top" secondItem="0YP-9F-ouC" secondAttribute="bottom" constant="12" id="s03-qh-hPg"/>
+                                        <constraint firstItem="pGW-dQ-GEF" firstAttribute="trailing" secondItem="Rmf-0O-ZrO" secondAttribute="trailingMargin" id="s89-Th-ZCQ"/>
                                         <constraint firstItem="0YP-9F-ouC" firstAttribute="leading" secondItem="Rmf-0O-ZrO" secondAttribute="leadingMargin" constant="-8" id="zwL-Kc-JaU"/>
                                     </constraints>
                                 </tableViewCellContentView>
@@ -73,6 +76,7 @@
                                     <outlet property="articleDateLabel" destination="kZn-iC-lfv" id="aAH-PD-gqd"/>
                                     <outlet property="articleSourceLabel" destination="cei-sR-bnQ" id="tyq-vu-Fma"/>
                                     <outlet property="articleTitleLabel" destination="0YP-9F-ouC" id="4c4-su-RcH"/>
+                                    <outlet property="favButton" destination="pGW-dQ-GEF" id="5lx-Tc-FBq"/>
                                     <segue destination="kSm-ad-6UA" kind="show" id="EsN-q8-lCb"/>
                                 </connections>
                             </tableViewCell>
