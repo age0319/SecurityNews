@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16096" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="HJ5-zW-59u">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16097" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="HJ5-zW-59u">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
@@ -53,7 +53,7 @@
                                         </label>
                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pGW-dQ-GEF">
                                             <rect key="frame" x="375" y="39" width="19" height="22"/>
-                                            <state key="normal" image="star"/>
+                                            <state key="normal" image="star.fill"/>
                                             <connections>
                                                 <action selector="touch:" destination="snm-6I-XlN" eventType="touchUpInside" id="Dnv-v4-fS7"/>
                                             </connections>
@@ -147,6 +147,6 @@
         </scene>
     </scenes>
     <resources>
-        <image name="star" width="19" height="18"/>
+        <image name="star.fill" width="19" height="18"/>
     </resources>
 </document>

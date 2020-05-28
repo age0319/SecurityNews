@@ -14,6 +14,7 @@ class Item {
     var dateString = ""
     var date: Date = Date()
     var source = ""
+    var isFavorite:Bool = false
     
     func convert_pubdate_date(currentString: String) {
         let dateFormatter = DateFormatter()

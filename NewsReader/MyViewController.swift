@@ -23,8 +23,12 @@ class MyViewController: UITableViewController, ArticleCellDelegate{
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath) as! MyTableViewCell
-        cell.setArticle(item: items[indexPath.row])
+        let row_item = items[indexPath.row]
+        cell.setArticle(item: row_item)
         cell.delegte = self
+        cell.index = indexPath
+        
+        cell.favorateButton.tintColor = row_item.isFavorite ? UIColor.red : .lightGray
         
         return cell
     }
@@ -76,6 +80,10 @@ class MyViewController: UITableViewController, ArticleCellDelegate{
            alert.addAction(UIAlertAction(title: "Ok", style: .default, handler: nil))
            present(alert, animated: true, completion: nil)
        }
+    
+    func reloadCell(index: IndexPath) {
+        tableView.reloadRows(at: [index], with: .fade)
+    }
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if let indexPath = self.tableView.indexPathForSelectedRow{

@@ -11,11 +11,10 @@ import UIKit
 
 protocol ArticleCellDelegate {
     func didReadLator(title: String)
+    func reloadCell(index: IndexPath)
 }
 
 class MyTableViewCell: UITableViewCell {
-    
-    var item:Item!
     
     @IBOutlet weak var articleTitleLabel: UILabel!
     @IBOutlet weak var articleDateLabel: UILabel!
@@ -24,6 +23,8 @@ class MyTableViewCell: UITableViewCell {
     
     //delegateの関数はViewContrtrollerに記載されている
     var delegte: ArticleCellDelegate?
+    var item:Item!
+    var index:IndexPath!
     
     func setArticle(item: Item){
         self.item = item
@@ -33,15 +34,11 @@ class MyTableViewCell: UITableViewCell {
     }
     
     @IBAction func touch(_ sender: Any) {
+        
+        self.item.isFavorite = !self.item.isFavorite
+        
         delegte?.didReadLator(title: self.item.title)
-
-        favorateButton.setImage(UIImage(named: "star.fill")?.withRenderingMode(.alwaysOriginal), for: [])
-
-//        if favorateButton.currentImage == UIImage(named: "star"){
-//            favorateButton.setImage(UIImage(named: "star.fill")?.withRenderingMode(.alwaysOriginal), for: [])
-//        }else{
-//            favorateButton.setImage(UIImage(named:
-//                "star")?.withRenderingMode(.alwaysOriginal), for: [])
-//        }
+        delegte?.reloadCell(index: index)
+        
     }
 }
