@@ -52,7 +52,7 @@
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pGW-dQ-GEF">
-                                            <rect key="frame" x="375" y="39" width="19" height="22"/>
+                                            <rect key="frame" x="375.5" y="39" width="18.5" height="22"/>
                                             <state key="normal" image="star.fill"/>
                                             <connections>
                                                 <action selector="touch:" destination="snm-6I-XlN" eventType="touchUpInside" id="Dnv-v4-fS7"/>
@@ -82,7 +82,19 @@
                             </tableViewCell>
                         </prototypes>
                     </tableView>
+                    <toolbarItems>
+                        <barButtonItem image="book.fill" catalog="system" width="100" id="AkQ-5Z-mKb">
+                            <connections>
+                                <action selector="clickBook:" destination="BYZ-38-t0r" id="oaP-CG-l5Z"/>
+                                <segue destination="HXu-yF-F54" kind="show" id="8Y8-9O-Zr5"/>
+                            </connections>
+                        </barButtonItem>
+                        <barButtonItem image="doc.fill" catalog="system" width="100" id="94A-JV-3ij"/>
+                        <barButtonItem image="tray.fill" catalog="system" width="100" id="Fbt-8W-FAS"/>
+                        <barButtonItem image="square.and.arrow.up.fill" catalog="system" width="100" id="4o6-RM-gE1"/>
+                    </toolbarItems>
                     <navigationItem key="navigationItem" title="一覧" id="BjS-rN-d10"/>
+                    <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
                         <outlet property="spinner" destination="mtx-Hl-fgD" id="lSd-z6-afw"/>
                         <outlet property="table" destination="KRm-wJ-DjZ" id="uxD-hL-XxI"/>
@@ -91,6 +103,48 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1042.0289855072465" y="138.61607142857142"/>
+        </scene>
+        <!--Favorite View Controller-->
+        <scene sceneID="iNv-aQ-U05">
+            <objects>
+                <tableViewController id="HXu-yF-F54" customClass="FavoriteViewController" customModule="SecurityNews" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="L9o-YD-GU0">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <prototypes>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="FavCell" textLabel="xPW-ol-LC3" style="IBUITableViewCellStyleDefault" id="A3d-Sv-eXp" customClass="FavoriteViewCell" customModule="SecurityNews" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="28" width="414" height="43.5"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="A3d-Sv-eXp" id="Se7-ex-inn">
+                                    <rect key="frame" x="0.0" y="0.0" width="414" height="43.5"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="お気に入り" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="xPW-ol-LC3">
+                                            <rect key="frame" x="20" y="0.0" width="374" height="43.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <nil key="textColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
+                                </tableViewCellContentView>
+                                <connections>
+                                    <outlet property="favoriteTitle" destination="xPW-ol-LC3" id="nDc-28-Fya"/>
+                                    <segue destination="kSm-ad-6UA" kind="show" id="O1K-AB-W4W"/>
+                                </connections>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="HXu-yF-F54" id="MPV-iV-sqC"/>
+                            <outlet property="delegate" destination="HXu-yF-F54" id="rp1-uP-uon"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" id="8CH-is-CVP"/>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="DhL-eq-49I" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1030" y="834"/>
         </scene>
         <!--Detail View Controller-->
         <scene sceneID="Ajt-Og-AzZ">
@@ -130,13 +184,17 @@
         <!--Navigation Controller-->
         <scene sceneID="W9L-Vw-gl5">
             <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="HJ5-zW-59u" sceneMemberID="viewController">
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" toolbarHidden="NO" id="HJ5-zW-59u" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="ZR1-PR-kiG">
                         <rect key="frame" x="0.0" y="44" width="414" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
+                    <toolbar key="toolbar" opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="DBC-mt-7vG">
+                        <rect key="frame" x="0.0" y="813" width="414" height="49"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </toolbar>
                     <connections>
                         <segue destination="BYZ-38-t0r" kind="relationship" relationship="rootViewController" id="Y2H-kt-GKX"/>
                     </connections>
@@ -146,7 +204,14 @@
             <point key="canvasLocation" x="131.8840579710145" y="138.61607142857142"/>
         </scene>
     </scenes>
+    <inferredMetricsTieBreakers>
+        <segue reference="O1K-AB-W4W"/>
+    </inferredMetricsTieBreakers>
     <resources>
+        <image name="book.fill" catalog="system" width="128" height="100"/>
+        <image name="doc.fill" catalog="system" width="115" height="128"/>
+        <image name="square.and.arrow.up.fill" catalog="system" width="115" height="128"/>
         <image name="star.fill" width="19" height="18"/>
+        <image name="tray.fill" catalog="system" width="128" height="88"/>
     </resources>
 </document>

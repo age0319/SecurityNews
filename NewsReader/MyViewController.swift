@@ -91,7 +91,22 @@ class MyViewController: UITableViewController, ArticleCellDelegate{
             let controller = segue.destination as! DetailViewController
             controller.title = item.title
             controller.link = item.link
+        }else{
+            let controller = segue.destination as!
+                FavoriteViewController
+            
+            var favitems = [Item]()
+            for i in items{
+                if i.isFavorite{
+                    favitems.append(i)
+                }
+            }
+            controller.items = favitems
         }
     }
-
+    
+    
+    @IBAction func clickBook(_ sender: UIBarButtonItem) {
+        
+    }
 }

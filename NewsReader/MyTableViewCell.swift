@@ -37,7 +37,7 @@ class MyTableViewCell: UITableViewCell {
         
         self.item.isFavorite = !self.item.isFavorite
         
-        delegte?.didReadLator(title: self.item.title)
+//        delegte?.didReadLator(title: self.item.title)
         delegte?.reloadCell(index: index)
         
     }
