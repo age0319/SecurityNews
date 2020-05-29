@@ -17,10 +17,16 @@
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <color key="sectionIndexColor" cocoaTouchSystemColor="darkTextColor"/>
-                        <searchBar key="tableHeaderView" contentMode="redraw" id="uFR-dB-vSU">
-                            <rect key="frame" x="0.0" y="0.0" width="414" height="56"/>
+                        <searchBar key="tableHeaderView" contentMode="redraw" showsScopeBar="YES" id="uFR-dB-vSU">
+                            <rect key="frame" x="0.0" y="0.0" width="414" height="103"/>
                             <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                             <textInputTraits key="textInputTraits"/>
+                            <scopeButtonTitles>
+                                <string>All</string>
+                                <string>Android</string>
+                                <string>iOS</string>
+                                <string>IoT</string>
+                            </scopeButtonTitles>
                         </searchBar>
                         <activityIndicatorView key="tableFooterView" hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="medium" id="mtx-Hl-fgD">
                             <rect key="frame" x="0.0" y="793" width="414" height="44"/>

@@ -29,6 +29,25 @@ class MyViewController: UITableViewController, ArticleCellDelegate,UISearchBarDe
     
     
     func searchBar(_ searchBar: UISearchBar, selectedScopeButtonIndexDidChange selectedScope: Int) {
+        switch selectedScope {
+        case 0:
+            currentItems = items
+        case 1:
+            currentItems = items.filter({ item -> Bool in
+                item.title.lowercased().contains("android")
+            })
+        case 2:
+            currentItems = items.filter({ item -> Bool in
+                item.title.lowercased().contains("ios")
+            })
+        case 3:
+            currentItems = items.filter({ item -> Bool in
+                item.title.lowercased().contains("iot")
+            })
+        default:
+            break
+        }
+        table.reloadData()
     }
     
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
@@ -41,6 +60,12 @@ class MyViewController: UITableViewController, ArticleCellDelegate,UISearchBarDe
             item.title.lowercased().contains(searchText.lowercased())
         })
         table.reloadData()
+    }
+    
+    //Enterを押した時にキーボードが消えるようにする。
+    func searchBarSearchButtonClicked(_ searchBar: UISearchBar)
+    {
+        self.search.endEditing(true)
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -110,11 +135,9 @@ class MyViewController: UITableViewController, ArticleCellDelegate,UISearchBarDe
             controller.title = item.title
             controller.link = item.link
         }else{
-            let controller = segue.destination as!
-                FavoriteViewController
-            
+            let controller = segue.destination as! FavoriteViewController
             var favitems = [Item]()
-            for i in currentItems{
+            for i in items{
                 if i.isFavorite{
                     favitems.append(i)
                 }
