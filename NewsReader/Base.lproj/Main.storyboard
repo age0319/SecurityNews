@@ -94,9 +94,6 @@
                                 <segue destination="HXu-yF-F54" kind="show" id="8Y8-9O-Zr5"/>
                             </connections>
                         </barButtonItem>
-                        <barButtonItem image="doc.fill" catalog="system" width="100" id="94A-JV-3ij"/>
-                        <barButtonItem image="tray.fill" catalog="system" width="100" id="Fbt-8W-FAS"/>
-                        <barButtonItem image="square.and.arrow.up.fill" catalog="system" width="100" id="4o6-RM-gE1"/>
                     </toolbarItems>
                     <navigationItem key="navigationItem" title="一覧" id="BjS-rN-d10"/>
                     <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
@@ -214,9 +211,6 @@
     </inferredMetricsTieBreakers>
     <resources>
         <image name="book.fill" catalog="system" width="128" height="100"/>
-        <image name="doc.fill" catalog="system" width="115" height="128"/>
-        <image name="square.and.arrow.up.fill" catalog="system" width="115" height="128"/>
         <image name="star.fill" width="19" height="18"/>
-        <image name="tray.fill" catalog="system" width="128" height="88"/>
     </resources>
 </document>
