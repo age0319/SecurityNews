@@ -44,6 +44,14 @@ class MyViewController: UITableViewController, ArticleCellDelegate,UISearchBarDe
             currentItems = items.filter({ item -> Bool in
                 item.title.lowercased().contains("iot")
             })
+        case 4:
+            currentItems = items.filter({ item -> Bool in
+                item.title.lowercased().contains("windows")
+            })
+        case 5:
+            currentItems = items.filter({ item -> Bool in
+                item.title.lowercased().contains("linux")
+            })
         default:
             break
         }
@@ -118,6 +126,7 @@ class MyViewController: UITableViewController, ArticleCellDelegate,UISearchBarDe
             DispatchQueue.main.async {
                 self?.items = data
                 self?.currentItems = data
+                self?.search.selectedScopeButtonIndex = 0;
                 self?.table.reloadData()
                 sender.endRefreshing()
             }

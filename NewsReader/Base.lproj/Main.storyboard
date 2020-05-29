@@ -18,7 +18,7 @@
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <color key="sectionIndexColor" cocoaTouchSystemColor="darkTextColor"/>
                         <searchBar key="tableHeaderView" contentMode="redraw" showsScopeBar="YES" id="uFR-dB-vSU">
-                            <rect key="frame" x="0.0" y="0.0" width="414" height="103"/>
+                            <rect key="frame" x="0.0" y="0.0" width="414" height="56"/>
                             <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                             <textInputTraits key="textInputTraits"/>
                             <scopeButtonTitles>
@@ -26,6 +26,8 @@
                                 <string>Android</string>
                                 <string>iOS</string>
                                 <string>IoT</string>
+                                <string>Windows</string>
+                                <string>Linux</string>
                             </scopeButtonTitles>
                         </searchBar>
                         <activityIndicatorView key="tableFooterView" hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="medium" id="mtx-Hl-fgD">
@@ -63,8 +65,8 @@
                                             <fontDescription key="fontDescription" type="system" pointSize="10"/>
                                             <nil key="highlightedColor"/>
                                         </label>
-                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pGW-dQ-GEF">
-                                            <rect key="frame" x="375.5" y="39" width="18.5" height="22"/>
+                                        <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pGW-dQ-GEF">
+                                            <rect key="frame" x="347" y="11" width="50" height="50"/>
                                             <state key="normal" image="star.fill"/>
                                             <connections>
                                                 <action selector="touch:" destination="snm-6I-XlN" eventType="touchUpInside" id="Dnv-v4-fS7"/>
@@ -73,14 +75,14 @@
                                     </subviews>
                                     <constraints>
                                         <constraint firstItem="cei-sR-bnQ" firstAttribute="leading" secondItem="Rmf-0O-ZrO" secondAttribute="leadingMargin" constant="6" id="7Cw-eL-xpt"/>
-                                        <constraint firstItem="pGW-dQ-GEF" firstAttribute="centerY" secondItem="Rmf-0O-ZrO" secondAttribute="centerY" id="7jl-Fd-k7g"/>
+                                        <constraint firstItem="pGW-dQ-GEF" firstAttribute="centerY" secondItem="Rmf-0O-ZrO" secondAttribute="centerY" constant="-13.5" id="7jl-Fd-k7g"/>
                                         <constraint firstAttribute="trailingMargin" secondItem="kZn-iC-lfv" secondAttribute="trailing" constant="-3" id="Hpb-7r-G2G"/>
                                         <constraint firstAttribute="trailingMargin" secondItem="0YP-9F-ouC" secondAttribute="trailing" constant="19" id="RXA-6q-D0L"/>
                                         <constraint firstItem="cei-sR-bnQ" firstAttribute="top" secondItem="0YP-9F-ouC" secondAttribute="bottom" constant="14" id="XkF-Ub-cwm"/>
                                         <constraint firstItem="0YP-9F-ouC" firstAttribute="top" secondItem="Rmf-0O-ZrO" secondAttribute="topMargin" constant="-6" id="dvE-7n-gnr"/>
                                         <constraint firstItem="cei-sR-bnQ" firstAttribute="centerY" secondItem="kZn-iC-lfv" secondAttribute="centerY" id="o5F-29-0nh"/>
                                         <constraint firstItem="kZn-iC-lfv" firstAttribute="top" secondItem="0YP-9F-ouC" secondAttribute="bottom" constant="12" id="s03-qh-hPg"/>
-                                        <constraint firstItem="pGW-dQ-GEF" firstAttribute="trailing" secondItem="Rmf-0O-ZrO" secondAttribute="trailingMargin" id="s89-Th-ZCQ"/>
+                                        <constraint firstItem="pGW-dQ-GEF" firstAttribute="trailing" secondItem="Rmf-0O-ZrO" secondAttribute="trailingMargin" constant="3" id="s89-Th-ZCQ"/>
                                         <constraint firstItem="0YP-9F-ouC" firstAttribute="leading" secondItem="Rmf-0O-ZrO" secondAttribute="leadingMargin" constant="-8" id="zwL-Kc-JaU"/>
                                     </constraints>
                                 </tableViewCellContentView>
