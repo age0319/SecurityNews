@@ -9,21 +9,48 @@
 import UIKit
 
 
-class MyViewController: UITableViewController, ArticleCellDelegate{
+class MyViewController: UITableViewController, ArticleCellDelegate,UISearchBarDelegate{
+
+    func didReadLator(title: String) {
+    }
+    
     
     @IBOutlet weak var spinner: UIActivityIndicatorView!
     @IBOutlet var table: UITableView!
+    @IBOutlet weak var search: UISearchBar!
     
     let myRefreshControl = UIRefreshControl()
     var items = [Item]()
+    var currentItems = [Item]()
+    
+    func setupSearchBar(){
+        search.delegate = self
+    }
+    
+    
+    func searchBar(_ searchBar: UISearchBar, selectedScopeButtonIndexDidChange selectedScope: Int) {
+    }
+    
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+        guard !searchText.isEmpty else {
+            currentItems = items
+            table.reloadData()
+            return
+        }
+        currentItems = items.filter({ item -> Bool in
+            item.title.lowercased().contains(searchText.lowercased())
+        })
+        table.reloadData()
+    }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return items.count
+        return currentItems.count
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath) as! MyTableViewCell
-        let row_item = items[indexPath.row]
+      
+        let row_item = currentItems[indexPath.row]
         cell.setArticle(item: row_item)
         cell.delegte = self
         cell.index = indexPath
@@ -39,13 +66,15 @@ class MyViewController: UITableViewController, ArticleCellDelegate{
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        setupSearchBar()
         spinner.startAnimating()
         let globalQueue = DispatchQueue.global(
                       qos: DispatchQoS.QoSClass.userInitiated)
               globalQueue.async { [ weak self] in
-                let mp = MyParse()
-                self?.items = mp.startDownload()
+                let data = MyParse().startDownload()
               DispatchQueue.main.async {
+                self?.items = data
+                self?.currentItems = data
                 self?.spinner.stopAnimating()
                 self?.table.reloadData()
               }
@@ -60,26 +89,15 @@ class MyViewController: UITableViewController, ArticleCellDelegate{
         let globalQueue = DispatchQueue.global(
             qos: DispatchQoS.QoSClass.userInitiated)
         globalQueue.async { [ weak self] in
-            let mp = MyParse()
-            let tmp = mp.startDownload()
+            let data = MyParse().startDownload()
             DispatchQueue.main.async {
-                self?.items = tmp
+                self?.items = data
                 self?.table.reloadData()
                 sender.endRefreshing()
             }
         }
     }
     
-    // プロトコルに批准して処理を記載。実行はCell内のお気に入りボタンがタッチされた時。
-    func didReadLator(title: String) {
-           print(title)
-           let alertTitle = "Watch Later"
-           let message = "\(title) added to Watch Later List"
-           
-           let alert = UIAlertController(title: alertTitle, message: message, preferredStyle: .alert)
-           alert.addAction(UIAlertAction(title: "Ok", style: .default, handler: nil))
-           present(alert, animated: true, completion: nil)
-       }
     
     func reloadCell(index: IndexPath) {
         tableView.reloadRows(at: [index], with: .fade)
@@ -105,8 +123,4 @@ class MyViewController: UITableViewController, ArticleCellDelegate{
         }
     }
     
-    
-    @IBAction func clickBook(_ sender: UIBarButtonItem) {
-        
-    }
 }

@@ -10,19 +10,25 @@
         <!--一覧-->
         <scene sceneID="tne-QT-ifu">
             <objects>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
                 <viewController id="BYZ-38-t0r" customClass="MyViewController" customModule="SecurityNews" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="100" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="KRm-wJ-DjZ">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <color key="sectionIndexColor" cocoaTouchSystemColor="darkTextColor"/>
-                        <activityIndicatorView key="tableFooterView" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="medium" id="mtx-Hl-fgD">
-                            <rect key="frame" x="0.0" y="156" width="414" height="44"/>
+                        <searchBar key="tableHeaderView" contentMode="redraw" id="uFR-dB-vSU">
+                            <rect key="frame" x="0.0" y="0.0" width="414" height="56"/>
+                            <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                            <textInputTraits key="textInputTraits"/>
+                        </searchBar>
+                        <activityIndicatorView key="tableFooterView" hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="medium" id="mtx-Hl-fgD">
+                            <rect key="frame" x="0.0" y="793" width="414" height="44"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         </activityIndicatorView>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="Cell" id="snm-6I-XlN" customClass="MyTableViewCell" customModule="SecurityNews" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="28" width="414" height="100"/>
+                                <rect key="frame" x="0.0" y="84" width="414" height="100"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="snm-6I-XlN" id="Rmf-0O-ZrO">
                                     <rect key="frame" x="0.0" y="0.0" width="414" height="100"/>
@@ -85,7 +91,6 @@
                     <toolbarItems>
                         <barButtonItem image="book.fill" catalog="system" width="100" id="AkQ-5Z-mKb">
                             <connections>
-                                <action selector="clickBook:" destination="BYZ-38-t0r" id="oaP-CG-l5Z"/>
                                 <segue destination="HXu-yF-F54" kind="show" id="8Y8-9O-Zr5"/>
                             </connections>
                         </barButtonItem>
@@ -96,11 +101,11 @@
                     <navigationItem key="navigationItem" title="一覧" id="BjS-rN-d10"/>
                     <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
+                        <outlet property="search" destination="uFR-dB-vSU" id="sfU-aq-7KK"/>
                         <outlet property="spinner" destination="mtx-Hl-fgD" id="lSd-z6-afw"/>
                         <outlet property="table" destination="KRm-wJ-DjZ" id="uxD-hL-XxI"/>
                     </connections>
                 </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1042.0289855072465" y="138.61607142857142"/>
         </scene>
@@ -205,7 +210,7 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="O1K-AB-W4W"/>
+        <segue reference="EsN-q8-lCb"/>
     </inferredMetricsTieBreakers>
     <resources>
         <image name="book.fill" catalog="system" width="128" height="100"/>
