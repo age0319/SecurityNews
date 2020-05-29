@@ -117,6 +117,7 @@ class MyViewController: UITableViewController, ArticleCellDelegate,UISearchBarDe
             let data = MyParse().startDownload()
             DispatchQueue.main.async {
                 self?.items = data
+                self?.currentItems = data
                 self?.table.reloadData()
                 sender.endRefreshing()
             }
