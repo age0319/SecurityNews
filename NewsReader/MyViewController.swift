@@ -148,15 +148,7 @@ class MyViewController: UITableViewController, ArticleCellDelegate,UISearchBarDe
                     favitems.append(i)
                 }
             }
-            saveFavs(favs: favitems)
         }
     }
     
-    func saveFavs(favs: [Item]){
-        let userDefaults = UserDefaults.standard
-        guard let encodedData = try? NSKeyedArchiver.archivedData(withRootObject: favs, requiringSecureCoding: true)else{
-            fatalError()
-        }
-        userDefaults.set(encodedData, forKey: "key")
-    }
 }
