@@ -30,6 +30,7 @@ class FavoriteViewController: UITableViewController{
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        items = loadData()!
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -40,4 +41,10 @@ class FavoriteViewController: UITableViewController{
                controller.link = item.link
            }
     }
+    
+    func loadData() -> [Item]?{
+        let data = UserDefaults.standard.data(forKey: "key")!
+        return try? NSKeyedUnarchiver.unarchiveTopLevelObjectWithData(data) as? [Item]
+    }
 }
+

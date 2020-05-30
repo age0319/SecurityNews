@@ -91,15 +91,15 @@
                                     <outlet property="articleSourceLabel" destination="cei-sR-bnQ" id="tyq-vu-Fma"/>
                                     <outlet property="articleTitleLabel" destination="0YP-9F-ouC" id="4c4-su-RcH"/>
                                     <outlet property="favorateButton" destination="pGW-dQ-GEF" id="3tf-IK-9rV"/>
-                                    <segue destination="kSm-ad-6UA" kind="show" id="EsN-q8-lCb"/>
+                                    <segue destination="kSm-ad-6UA" kind="show" identifier="toWebView" id="EsN-q8-lCb"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
                     </tableView>
                     <toolbarItems>
-                        <barButtonItem image="book.fill" catalog="system" width="100" id="AkQ-5Z-mKb">
+                        <barButtonItem systemItem="bookmarks" id="goU-0b-Gwg">
                             <connections>
-                                <segue destination="HXu-yF-F54" kind="show" id="8Y8-9O-Zr5"/>
+                                <segue destination="HXu-yF-F54" kind="show" identifier="toBookMark" id="WVf-un-l3U"/>
                             </connections>
                         </barButtonItem>
                     </toolbarItems>
@@ -218,7 +218,6 @@
         <segue reference="EsN-q8-lCb"/>
     </inferredMetricsTieBreakers>
     <resources>
-        <image name="book.fill" catalog="system" width="128" height="100"/>
         <image name="star.fill" width="19" height="18"/>
     </resources>
 </document>

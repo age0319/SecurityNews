@@ -8,13 +8,36 @@
 
 import Foundation
 
-class Item {
+class Item:NSObject, NSSecureCoding{
+    
+    static var supportsSecureCoding: Bool = true
+    
     var title = ""
     var link = ""
     var dateString = ""
-    var date: Date = Date()
+    var date = Date()
     var source = ""
-    var isFavorite:Bool = false
+    var isFavorite = Bool()
+    
+    override init() {
+    }
+    
+    required init?(coder decoder: NSCoder) {
+        if let title = decoder.decodeObject(forKey: "title") as? String{
+            self.title = title
+        }
+        if let link = decoder.decodeObject(forKey: "link") as? String{
+            self.link = link
+        }
+        
+        self.isFavorite = decoder.decodeBool(forKey: "isFavorite")
+    }
+    
+    func encode(with coder: NSCoder) {
+        coder.encode(self.title, forKey: "title")
+        coder.encode(self.link, forKey: "link")
+        coder.encode(self.isFavorite, forKey: "isFavorite")
+    }
     
     func convert_pubdate_date(currentString: String) {
         let dateFormatter = DateFormatter()

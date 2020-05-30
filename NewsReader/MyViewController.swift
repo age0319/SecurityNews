@@ -8,12 +8,7 @@
 
 import UIKit
 
-
 class MyViewController: UITableViewController, ArticleCellDelegate,UISearchBarDelegate{
-
-    func didReadLator(title: String) {
-    }
-    
     
     @IBOutlet weak var spinner: UIActivityIndicatorView!
     @IBOutlet var table: UITableView!
@@ -139,21 +134,29 @@ class MyViewController: UITableViewController, ArticleCellDelegate,UISearchBarDe
     }
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if let indexPath = self.tableView.indexPathForSelectedRow{
-            let item = currentItems[indexPath.row]
-            let controller = segue.destination as! DetailViewController
-            controller.title = item.title
-            controller.link = item.link
-        }else{
-            let controller = segue.destination as! FavoriteViewController
+        if segue.identifier == "toWebView"{
+            if let indexPath = self.tableView.indexPathForSelectedRow{
+                let item = currentItems[indexPath.row]
+                let controller = segue.destination as! DetailViewController
+                controller.title = item.title
+                controller.link = item.link
+            }
+        }else if segue.identifier == "toBookMark"{
             var favitems = [Item]()
             for i in items{
                 if i.isFavorite{
                     favitems.append(i)
                 }
             }
-            controller.items = favitems
+            saveFavs(favs: favitems)
         }
     }
     
+    func saveFavs(favs: [Item]){
+        let userDefaults = UserDefaults.standard
+        guard let encodedData = try? NSKeyedArchiver.archivedData(withRootObject: favs, requiringSecureCoding: true)else{
+            fatalError()
+        }
+        userDefaults.set(encodedData, forKey: "key")
+    }
 }

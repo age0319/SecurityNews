@@ -10,7 +10,6 @@ import Foundation
 import UIKit
 
 protocol ArticleCellDelegate {
-    func didReadLator(title: String)
     func reloadCell(index: IndexPath)
 }
 
@@ -37,7 +36,6 @@ class MyTableViewCell: UITableViewCell {
         
         self.item.isFavorite = !self.item.isFavorite
         
-//        delegte?.didReadLator(title: self.item.title)
         delegte?.reloadCell(index: index)
         
     }
