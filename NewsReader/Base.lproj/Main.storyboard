@@ -102,6 +102,11 @@
                                 <segue destination="HXu-yF-F54" kind="show" identifier="toBookMark" id="WVf-un-l3U"/>
                             </connections>
                         </barButtonItem>
+                        <barButtonItem systemItem="action" id="UaU-uL-F6I">
+                            <connections>
+                                <action selector="showActivityViewController:" destination="BYZ-38-t0r" id="fDT-wK-CZZ"/>
+                            </connections>
+                        </barButtonItem>
                     </toolbarItems>
                     <navigationItem key="navigationItem" title="一覧" id="BjS-rN-d10"/>
                     <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
@@ -226,7 +231,7 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="O1K-AB-W4W"/>
+        <segue reference="EsN-q8-lCb"/>
     </inferredMetricsTieBreakers>
     <resources>
         <image name="star.fill" width="19" height="18"/>

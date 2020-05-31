@@ -39,6 +39,10 @@ class Item:NSObject, NSSecureCoding{
         coder.encode(self.isFavorite, forKey: "isFavorite")
     }
     
+    func getLink() -> String{
+        return self.link
+    }
+    
     func convert_pubdate_date(currentString: String) {
         let dateFormatter = DateFormatter()
         dateFormatter.locale = NSLocale(localeIdentifier: "en_US_POSIX") as Locale

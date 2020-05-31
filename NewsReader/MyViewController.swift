@@ -22,6 +22,17 @@ class MyViewController: UITableViewController, ArticleCellDelegate,UISearchBarDe
         search.delegate = self
     }
     
+    @IBAction func showActivityViewController(_ sender: Any) {
+        let favs = loadFavs()
+        var links = [String]()
+        
+        for i in favs{
+            links.append(i.getLink())
+        }
+        
+        let controller = UIActivityViewController(activityItems:links ,applicationActivities: nil)
+        self.present(controller, animated: true, completion: nil)
+    }
     
     func searchBar(_ searchBar: UISearchBar, selectedScopeButtonIndexDidChange selectedScope: Int) {
         switch selectedScope {
