@@ -90,6 +90,8 @@ class MyViewController: UITableViewController, ArticleCellDelegate,UISearchBarDe
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
+        updateFavs()
+        table.reloadData()
     }
     
     override func viewDidLoad() {
@@ -104,6 +106,7 @@ class MyViewController: UITableViewController, ArticleCellDelegate,UISearchBarDe
                 self?.items = data
                 self?.currentItems = data
                 self?.spinner.stopAnimating()
+                self?.updateFavs()
                 self?.table.reloadData()
               }
         }
@@ -122,6 +125,7 @@ class MyViewController: UITableViewController, ArticleCellDelegate,UISearchBarDe
                 self?.items = data
                 self?.currentItems = data
                 self?.search.selectedScopeButtonIndex = 0;
+                self?.updateFavs()
                 self?.table.reloadData()
                 sender.endRefreshing()
             }
@@ -141,14 +145,32 @@ class MyViewController: UITableViewController, ArticleCellDelegate,UISearchBarDe
                 controller.title = item.title
                 controller.link = item.link
             }
-        }else if segue.identifier == "toBookMark"{
-            var favitems = [Item]()
-            for i in items{
-                if i.isFavorite{
-                    favitems.append(i)
-                }
-            }
         }
     }
-    
+
+    func updateFavs(){
+           
+       let favs = loadFavs()
+        
+        if favs.isEmpty {
+            self.items.forEach { $0.isFavorite = false }
+        }else{
+           for i in favs{
+               if let offset = self.items.firstIndex(where: {$0.title == i.title}) {
+                   self.items[offset].isFavorite = true
+               }
+           }
+        }
+        
+       return
+    }
+       
+    func loadFavs() -> [Item]{
+        if let data = UserDefaults.standard.data(forKey: "key"){
+            return try! NSKeyedUnarchiver.unarchiveTopLevelObjectWithData(data) as! [Item]
+        }else{
+            let items = [Item]()
+            return items
+        }
+    }
 }

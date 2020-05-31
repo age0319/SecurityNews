@@ -17,6 +17,10 @@ class FavoriteViewController: UITableViewController{
     
     var items = [Item]()
     
+    @IBAction func trash(_ sender: Any) {
+        trashFavs()
+    }
+    
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return items.count
     }
@@ -32,7 +36,7 @@ class FavoriteViewController: UITableViewController{
         super.viewDidLoad()
         items = loadFavs()
     }
-    
+        
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
            if let indexPath = self.tableView.indexPathForSelectedRow{
                let item = items[indexPath.row]
@@ -49,6 +53,12 @@ class FavoriteViewController: UITableViewController{
             let items = [Item]()
             return items
         }
+    }
+    
+    func trashFavs(){
+        UserDefaults.standard.removeObject(forKey: "key")
+        items = []
+        tableView.reloadData()
     }
 }
 

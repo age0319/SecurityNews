@@ -150,7 +150,18 @@
                             <outlet property="delegate" destination="HXu-yF-F54" id="rp1-uP-uon"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" id="8CH-is-CVP"/>
+                    <navigationItem key="navigationItem" id="8CH-is-CVP">
+                        <barButtonItem key="rightBarButtonItem" style="plain" id="sWO-X8-LTO">
+                            <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="YOV-Wc-XGI">
+                                <rect key="frame" x="320" y="11" width="74" height="22"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" image="trash" catalog="system"/>
+                                <connections>
+                                    <action selector="trash:" destination="HXu-yF-F54" eventType="touchUpInside" id="qKa-lk-VDd"/>
+                                </connections>
+                            </button>
+                        </barButtonItem>
+                    </navigationItem>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="DhL-eq-49I" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
@@ -215,9 +226,10 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="EsN-q8-lCb"/>
+        <segue reference="O1K-AB-W4W"/>
     </inferredMetricsTieBreakers>
     <resources>
         <image name="star.fill" width="19" height="18"/>
+        <image name="trash" catalog="system" width="121" height="128"/>
     </resources>
 </document>

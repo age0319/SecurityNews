@@ -14,7 +14,7 @@ class MyParse : NSObject,XMLParserDelegate{
     var item:Item?
     var currentstring = ""
     
-    func startDownload() -> Array <Item>{
+    func startDownload() -> [Item]{
         self.items = []
         let urls = ["http://www.security-next.com/feed",
                     "http://feeds.trendmicro.com/TM-Securityblog/",
@@ -37,8 +37,10 @@ class MyParse : NSObject,XMLParserDelegate{
         self.items = self.items.sorted(by: {
             $0.date.compare($1.date) == .orderedDescending
         })
+        
         return self.items
     }
+    
         
     func parser(_ parser: XMLParser, didStartElement elementName: String, namespaceURI: String?, qualifiedName qName: String?, attributes attributeDict: [String : String] = [:]) {
         self.currentstring = ""
