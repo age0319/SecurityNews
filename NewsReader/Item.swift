@@ -18,6 +18,7 @@ class Item:NSObject, NSSecureCoding{
     var date = Date()
     var source = ""
     var isFavorite = Bool()
+    var subject = ""
     
     override init() {
     }
@@ -85,6 +86,8 @@ class Item:NSObject, NSSecureCoding{
             self.source = "LAC"
         }else if(self.link.contains("techcrunch.com")){
             self.source = "TechCrunch"
+        }else if(self.link.contains("gigazine.net")){
+            self.source = "Gigazine"
         }
     }
 

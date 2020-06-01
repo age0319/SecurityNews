@@ -20,7 +20,8 @@ class MyParse : NSObject,XMLParserDelegate{
                        "https://www.ipa.go.jp/security/rss/info.rdf",
                        "https://scan.netsecurity.ne.jp/rss/index.rdf",
                        "https://www.lac.co.jp/lacwatch/feed.xml",
-                       "https://jp.techcrunch.com/news/security/feed/"]
+                       "https://jp.techcrunch.com/news/security/feed/",
+                       "https://gigazine.net/news/rss_2.0/"]
     
     func startDownload() -> [Item]{
         self.items = []
@@ -36,6 +37,18 @@ class MyParse : NSObject,XMLParserDelegate{
         }
         self.items = self.items.sorted(by: {
             $0.date.compare($1.date) == .orderedDescending
+        })
+        
+        self.items = self.items.filter({ item -> Bool in
+            !item.title.contains("最新記事一覧")
+        })
+        
+        self.items = self.items.filter({ item -> Bool in
+            if item.source.contains("Gigazine"){
+                return item.subject.contains("セキュリティ")
+            }else{
+                return true
+            }
         })
         
         return self.items
@@ -65,6 +78,8 @@ class MyParse : NSObject,XMLParserDelegate{
             case "dc:date":
                 self.item?.convert_dcdate_date(currentString: currentstring)
                 self.item?.convert_date_to_string()
+            case "dc:subject":
+                self.item?.subject = currentstring
             case "item":
                 self.items.append(self.item!)
             default:
