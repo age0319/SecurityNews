@@ -31,7 +31,7 @@
                             </scopeButtonTitles>
                         </searchBar>
                         <activityIndicatorView key="tableFooterView" hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="medium" id="mtx-Hl-fgD">
-                            <rect key="frame" x="0.0" y="837" width="414" height="44"/>
+                            <rect key="frame" x="0.0" y="793" width="414" height="44"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         </activityIndicatorView>
                         <prototypes>
@@ -105,6 +105,11 @@
                         <barButtonItem systemItem="action" id="UaU-uL-F6I">
                             <connections>
                                 <action selector="showActivityViewController:" destination="BYZ-38-t0r" id="fDT-wK-CZZ"/>
+                            </connections>
+                        </barButtonItem>
+                        <barButtonItem systemItem="play" id="PHo-M4-4Qc">
+                            <connections>
+                                <segue destination="iU7-kp-yu4" kind="show" id="9Df-vG-RSg"/>
                             </connections>
                         </barButtonItem>
                     </toolbarItems>
@@ -248,7 +253,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <wkWebView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fqH-6u-HAu">
-                                <rect key="frame" x="0.0" y="-44" width="414" height="984"/>
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                                 <color key="backgroundColor" red="0.36078431370000003" green="0.38823529410000002" blue="0.4039215686" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <wkWebViewConfiguration key="configuration">
                                     <audiovisualMediaTypes key="mediaTypesRequiringUserActionForPlayback" none="YES"/>
@@ -289,7 +294,7 @@
                         <autoresizingMask key="autoresizingMask"/>
                     </toolbar>
                     <connections>
-                        <segue destination="iU7-kp-yu4" kind="relationship" relationship="rootViewController" id="bQr-GW-yjX"/>
+                        <segue destination="BYZ-38-t0r" kind="relationship" relationship="rootViewController" id="pTe-N9-Seg"/>
                     </connections>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="u3y-k8-6En" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>

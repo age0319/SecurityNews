@@ -70,11 +70,11 @@ class Item:NSObject, NSSecureCoding{
     
     func check_source(){
         if self.link.contains("security-next.com"){
-            self.source = "Security Next"
+            self.source = "SecurityNext"
         }else if(self.link.contains("trendmicro")){
-            self.source = "Trend Micro"
+            self.source = "TrendMicro"
         }else if(self.link.contains("itmedia.co.jp")){
-            self.source = "IT Media"
+            self.source = "ITMedia"
         }else if(self.link.contains("ccsi")){
             self.source = "CCSI"
         }else if(self.link.contains("ipa.go.jp")){
@@ -83,6 +83,8 @@ class Item:NSObject, NSSecureCoding{
             self.source = "ScanNetSecurity"
         }else if(self.link.contains("www.lac.co.jp")){
             self.source = "LAC"
+        }else if(self.link.contains("techcrunch.com")){
+            self.source = "TechCrunch"
         }
     }
 

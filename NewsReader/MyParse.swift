@@ -19,7 +19,8 @@ class MyParse : NSObject,XMLParserDelegate{
                        "https://ccsi.jp/category/%E3%82%BB%E3%82%AD%E3%83%A5%E3%83%AA%E3%83%86%E3%82%A3%E3%83%8B%E3%83%A5%E3%83%BC%E3%82%B9/feed/",
                        "https://www.ipa.go.jp/security/rss/info.rdf",
                        "https://scan.netsecurity.ne.jp/rss/index.rdf",
-                       "https://www.lac.co.jp/lacwatch/feed.xml"]
+                       "https://www.lac.co.jp/lacwatch/feed.xml",
+                       "https://jp.techcrunch.com/news/security/feed/"]
     
     func startDownload() -> [Item]{
         self.items = []

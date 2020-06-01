@@ -16,6 +16,16 @@ class JsonTableCell: UITableViewCell {
     
 }
 
+struct Article: Codable{
+    let title: String?
+    let description: String?
+    let url: String?
+}
+
+struct ResultJson: Codable{
+    let articles:[Article]?
+}
+
 
 class JsonTableController: UITableViewController {
     
@@ -28,4 +38,34 @@ class JsonTableController: UITableViewController {
                                                    for: indexPath) as! JsonTableCell
           return cell
       }
+
+    override func viewDidLoad() {
+        download()
+    }
+    
+    func download(){
+
+        let urlString = "https://newsapi.org/v2/top-headlines?country=jp&category=technology&apiKey=9947436f9ee74ff2a49a3c7b8f60226e"
+        let req_url = URL(string: urlString)
+        let req = URLRequest(url: req_url!)
+        let session = URLSession(configuration: .default, delegate: nil, delegateQueue: OperationQueue.main)
+
+        let task = session.dataTask(with: req, completionHandler: {
+           (data, response, error) in
+           
+           session.finishTasksAndInvalidate()
+           
+           do{
+               let decode = JSONDecoder()
+               let json = try decode.decode(ResultJson.self, from: data!)
+               
+               print(json)
+           }catch{
+               print("error happened")
+           }
+        })
+
+        task.resume()
+    }
+    
 }
