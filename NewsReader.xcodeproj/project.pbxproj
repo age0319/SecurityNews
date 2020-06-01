@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		4997DC93247FAE0B00560099 /* FavoriteViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4997DC92247FAE0B00560099 /* FavoriteViewController.swift */; };
+		4997DC952484731D00560099 /* JsonTableController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4997DC942484731D00560099 /* JsonTableController.swift */; };
 		B14E4957247AA0BC002635ED /* MyParse.swift in Sources */ = {isa = PBXBuildFile; fileRef = B14E4956247AA0BC002635ED /* MyParse.swift */; };
 		B14E495B247E3CD4002635ED /* MyTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B14E495A247E3CD4002635ED /* MyTableViewCell.swift */; };
 		B19EBD42247349BE00DB7AB4 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B19EBD41247349BE00DB7AB4 /* AppDelegate.swift */; };
@@ -23,6 +24,7 @@
 
 /* Begin PBXFileReference section */
 		4997DC92247FAE0B00560099 /* FavoriteViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteViewController.swift; sourceTree = "<group>"; };
+		4997DC942484731D00560099 /* JsonTableController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JsonTableController.swift; sourceTree = "<group>"; };
 		B14E4956247AA0BC002635ED /* MyParse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyParse.swift; sourceTree = "<group>"; };
 		B14E495A247E3CD4002635ED /* MyTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyTableViewCell.swift; sourceTree = "<group>"; };
 		B19EBD3E247349BE00DB7AB4 /* SecurityNews.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SecurityNews.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -82,6 +84,7 @@
 				B14E4956247AA0BC002635ED /* MyParse.swift */,
 				B14E495A247E3CD4002635ED /* MyTableViewCell.swift */,
 				4997DC92247FAE0B00560099 /* FavoriteViewController.swift */,
+				4997DC942484731D00560099 /* JsonTableController.swift */,
 			);
 			path = NewsReader;
 			sourceTree = "<group>";
@@ -171,6 +174,7 @@
 				B14E495B247E3CD4002635ED /* MyTableViewCell.swift in Sources */,
 				B14E4957247AA0BC002635ED /* MyParse.swift in Sources */,
 				B19EBD44247349BE00DB7AB4 /* SceneDelegate.swift in Sources */,
+				4997DC952484731D00560099 /* JsonTableController.swift in Sources */,
 				4997DC93247FAE0B00560099 /* FavoriteViewController.swift in Sources */,
 				B19EBD5824735D4400DB7AB4 /* MyViewController.swift in Sources */,
 			);
