@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		4997DC93247FAE0B00560099 /* FavoriteViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4997DC92247FAE0B00560099 /* FavoriteViewController.swift */; };
-		4997DC952484731D00560099 /* JsonTableController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4997DC942484731D00560099 /* JsonTableController.swift */; };
 		4997DC97248675E900560099 /* TechVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4997DC96248675E900560099 /* TechVC.swift */; };
 		4997DC992486771700560099 /* ParseJSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4997DC982486771700560099 /* ParseJSON.swift */; };
 		B14E4957247AA0BC002635ED /* MyParse.swift in Sources */ = {isa = PBXBuildFile; fileRef = B14E4956247AA0BC002635ED /* MyParse.swift */; };
@@ -26,7 +25,6 @@
 
 /* Begin PBXFileReference section */
 		4997DC92247FAE0B00560099 /* FavoriteViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteViewController.swift; sourceTree = "<group>"; };
-		4997DC942484731D00560099 /* JsonTableController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JsonTableController.swift; sourceTree = "<group>"; };
 		4997DC96248675E900560099 /* TechVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TechVC.swift; sourceTree = "<group>"; };
 		4997DC982486771700560099 /* ParseJSON.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParseJSON.swift; sourceTree = "<group>"; };
 		B14E4956247AA0BC002635ED /* MyParse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyParse.swift; sourceTree = "<group>"; };
@@ -88,7 +86,6 @@
 				B14E4956247AA0BC002635ED /* MyParse.swift */,
 				B14E495A247E3CD4002635ED /* MyTableViewCell.swift */,
 				4997DC92247FAE0B00560099 /* FavoriteViewController.swift */,
-				4997DC942484731D00560099 /* JsonTableController.swift */,
 				4997DC96248675E900560099 /* TechVC.swift */,
 				4997DC982486771700560099 /* ParseJSON.swift */,
 			);
@@ -180,7 +177,6 @@
 				B14E495B247E3CD4002635ED /* MyTableViewCell.swift in Sources */,
 				B14E4957247AA0BC002635ED /* MyParse.swift in Sources */,
 				B19EBD44247349BE00DB7AB4 /* SceneDelegate.swift in Sources */,
-				4997DC952484731D00560099 /* JsonTableController.swift in Sources */,
 				4997DC93247FAE0B00560099 /* FavoriteViewController.swift in Sources */,
 				4997DC992486771700560099 /* ParseJSON.swift in Sources */,
 				4997DC97248675E900560099 /* TechVC.swift in Sources */,

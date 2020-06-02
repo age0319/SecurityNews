@@ -116,19 +116,19 @@ class TechVC: UITableViewController, ArticleCellDelegate,UISearchBarDelegate{
     
     @objc private func refresh(sender: UIRefreshControl){
         
-        let globalQueue = DispatchQueue.global(
-            qos: DispatchQoS.QoSClass.userInitiated)
-        globalQueue.async { [ weak self] in
-            let data = MyParse().startDownload()
-            DispatchQueue.main.async {
-                self?.items = data
-                self?.currentItems = data
-                self?.search.selectedScopeButtonIndex = 0;
-                self?.updateFavs()
-                self?.table.reloadData()
+        
+        search.selectedScopeButtonIndex = 0;
+        
+        let handler = ParseJSON()
+        handler.download(completion: { items in
+            if let items = items {
+                self.items = items
+                self.currentItems = items
+                self.updateFavs()
+                self.table.reloadData()
                 sender.endRefreshing()
             }
-        }
+        })
     }
     
     
@@ -137,14 +137,14 @@ class TechVC: UITableViewController, ArticleCellDelegate,UISearchBarDelegate{
     }
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == "toWebView"{
-            if let indexPath = self.tableView.indexPathForSelectedRow{
-                let item = currentItems[indexPath.row]
-                let controller = segue.destination as! DetailViewController
-                controller.title = item.title
-                controller.link = item.link
-            }
+   
+        if let indexPath = self.tableView.indexPathForSelectedRow{
+            let item = items[indexPath.row]
+            let controller = segue.destination as! DetailViewController
+            controller.title = item.title
+            controller.link = item.link
         }
+        
     }
 
     func updateFavs(){
@@ -172,4 +172,5 @@ class TechVC: UITableViewController, ArticleCellDelegate,UISearchBarDelegate{
             return items
         }
     }
+    
 }

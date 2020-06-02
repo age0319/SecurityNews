@@ -149,13 +149,12 @@ class MyViewController: UITableViewController, ArticleCellDelegate,UISearchBarDe
     }
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == "toWebView"{
-            if let indexPath = self.tableView.indexPathForSelectedRow{
-                let item = currentItems[indexPath.row]
-                let controller = segue.destination as! DetailViewController
-                controller.title = item.title
-                controller.link = item.link
-            }
+       
+        if let indexPath = self.tableView.indexPathForSelectedRow{
+            let item = currentItems[indexPath.row]
+            let controller = segue.destination as! DetailViewController
+            controller.title = item.title
+            controller.link = item.link
         }
     }
 

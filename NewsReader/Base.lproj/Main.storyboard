@@ -41,7 +41,7 @@
                                     <rect key="frame" x="0.0" y="0.0" width="414" height="100"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0YP-9F-ouC">
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="記事のタイトル" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0YP-9F-ouC">
                                             <rect key="frame" x="12" y="5" width="363" height="63"/>
                                             <constraints>
                                                 <constraint firstAttribute="height" constant="63" id="vt2-87-Kbl"/>
@@ -50,7 +50,7 @@
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kZn-iC-lfv">
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="時間" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kZn-iC-lfv">
                                             <rect key="frame" x="311" y="80" width="86" height="17"/>
                                             <constraints>
                                                 <constraint firstAttribute="width" constant="86" id="1kN-Wu-I1q"/>
@@ -59,7 +59,7 @@
                                             <fontDescription key="fontDescription" type="system" pointSize="10"/>
                                             <nil key="highlightedColor"/>
                                         </label>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cei-sR-bnQ">
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="提供元" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cei-sR-bnQ">
                                             <rect key="frame" x="26" y="82" width="27" height="12"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="10"/>
                                             <nil key="highlightedColor"/>
@@ -90,7 +90,7 @@
                                     <outlet property="articleSourceLabel" destination="cei-sR-bnQ" id="tyq-vu-Fma"/>
                                     <outlet property="articleTitleLabel" destination="0YP-9F-ouC" id="4c4-su-RcH"/>
                                     <outlet property="favorateButton" destination="pGW-dQ-GEF" id="3tf-IK-9rV"/>
-                                    <segue destination="kSm-ad-6UA" kind="show" identifier="toWebView" id="EsN-q8-lCb"/>
+                                    <segue destination="kSm-ad-6UA" kind="show" identifier="" id="EsN-q8-lCb"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
@@ -119,8 +119,8 @@
                     </tabBar>
                     <connections>
                         <segue destination="kA3-8f-Q9s" kind="relationship" relationship="viewControllers" id="fdD-U0-aAY"/>
-                        <segue destination="ezm-0q-IAr" kind="relationship" relationship="viewControllers" id="Yss-qu-yXx"/>
                         <segue destination="EaG-Xu-hRJ" kind="relationship" relationship="viewControllers" id="NdO-cq-dSS"/>
+                        <segue destination="ezm-0q-IAr" kind="relationship" relationship="viewControllers" id="Yss-qu-yXx"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="k2X-Mh-q6e" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -282,7 +282,7 @@
                                     <rect key="frame" x="0.0" y="0.0" width="414" height="100"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GZF-Fu-E62">
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="記事のタイトル" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GZF-Fu-E62">
                                             <rect key="frame" x="12" y="5" width="363" height="63"/>
                                             <constraints>
                                                 <constraint firstAttribute="height" constant="63" id="Hro-b4-wIY"/>
@@ -291,7 +291,7 @@
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vmO-ZM-A53">
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="時間" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vmO-ZM-A53">
                                             <rect key="frame" x="311" y="80" width="86" height="17"/>
                                             <constraints>
                                                 <constraint firstAttribute="width" constant="86" id="HQo-1N-nKx"/>
@@ -300,7 +300,7 @@
                                             <fontDescription key="fontDescription" type="system" pointSize="10"/>
                                             <nil key="highlightedColor"/>
                                         </label>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="U7J-5A-lrS">
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="提供元" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="U7J-5A-lrS">
                                             <rect key="frame" x="26" y="82" width="27" height="12"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="10"/>
                                             <nil key="highlightedColor"/>
@@ -353,7 +353,7 @@
         <scene sceneID="TbO-qk-izT">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="EaG-Xu-hRJ" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Technology" selectedImage="desktopcomputer" catalog="system" id="B8R-8V-j8f"/>
+                    <tabBarItem key="tabBarItem" title="Technology" image="desktopcomputer" catalog="system" id="B8R-8V-j8f"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="Czg-1U-i0Z">
                         <rect key="frame" x="0.0" y="44" width="414" height="44"/>
@@ -370,7 +370,7 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="O1K-AB-W4W"/>
+        <segue reference="EsN-q8-lCb"/>
     </inferredMetricsTieBreakers>
     <resources>
         <image name="checkmark.seal.fill" catalog="system" width="128" height="122"/>
