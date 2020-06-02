@@ -19,6 +19,7 @@ class Item:NSObject, NSSecureCoding{
     var source = ""
     var isFavorite = Bool()
     var subject = ""
+    var desc = ""
     
     override init() {
     }

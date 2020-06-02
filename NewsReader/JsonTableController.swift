@@ -11,9 +11,10 @@ import UIKit
 
 class JsonTableCell: UITableViewCell {
     @IBOutlet weak var myImage: UIImageView!
-    @IBOutlet weak var articletitleLabel: UILabel!
-    @IBOutlet weak var articletextLabel: UILabel!
+    @IBOutlet weak var articleTitle: UILabel!
+    @IBOutlet weak var articleDesc: UILabel!
     
+        
 }
 
 struct Article: Codable{
@@ -27,24 +28,28 @@ struct ResultJson: Codable{
 }
 
 
-class JsonTableController: UITableViewController {
+class JsonTableController: UITableViewController{
+    
+    var items = [Item]()
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-          return 3
+        return items.count
       }
       
       override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-          let cell = tableView.dequeueReusableCell(withIdentifier: "JsonCell",
+        let cell = tableView.dequeueReusableCell(withIdentifier: "JsonCell",
                                                    for: indexPath) as! JsonTableCell
-          return cell
+        cell.articleTitle.text = items[indexPath.row].title
+        cell.articleDesc.text = items[indexPath.row].desc
+        return cell
       }
 
     override func viewDidLoad() {
+        super.viewDidLoad()
         download()
     }
     
     func download(){
-
         let urlString = "https://newsapi.org/v2/top-headlines?country=jp&category=technology&apiKey=9947436f9ee74ff2a49a3c7b8f60226e"
         let req_url = URL(string: urlString)
         let req = URLRequest(url: req_url!)
@@ -52,14 +57,20 @@ class JsonTableController: UITableViewController {
 
         let task = session.dataTask(with: req, completionHandler: {
            (data, response, error) in
-           
-           session.finishTasksAndInvalidate()
-           
-           do{
-               let decode = JSONDecoder()
-               let json = try decode.decode(ResultJson.self, from: data!)
-               
-               print(json)
+            session.finishTasksAndInvalidate()
+            self.items.removeAll()
+            do{
+                let decode = JSONDecoder()
+                let json = try decode.decode(ResultJson.self, from: data!)
+                let articles = json.articles
+                for article in articles!{
+                let item = Item()
+                item.title = article.title!
+                item.link = article.url!
+                item.desc = article.description!
+                self.items.append(item)
+            }
+            self.tableView.reloadData()
            }catch{
                print("error happened")
            }

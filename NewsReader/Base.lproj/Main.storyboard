@@ -174,8 +174,8 @@
                                     </constraints>
                                 </tableViewCellContentView>
                                 <connections>
-                                    <outlet property="articletextLabel" destination="cEx-35-Gsl" id="0Hj-k6-Lp8"/>
-                                    <outlet property="articletitleLabel" destination="NUE-q5-ofV" id="1TP-DM-G2e"/>
+                                    <outlet property="articleDesc" destination="cEx-35-Gsl" id="13x-ks-rXQ"/>
+                                    <outlet property="articleTitle" destination="NUE-q5-ofV" id="1U9-3D-A33"/>
                                     <outlet property="myImage" destination="aaa-7l-3YF" id="pvm-2Q-9Ux"/>
                                 </connections>
                             </tableViewCell>
