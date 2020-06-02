@@ -17,7 +17,8 @@ class FavoriteViewController: UITableViewController{
     
     var items = [Item]()
     
-    @IBAction func trash(_ sender: Any) {
+   
+    @IBAction func onTrash(_ sender: Any) {
         trashFavs()
     }
     
