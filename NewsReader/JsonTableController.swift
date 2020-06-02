@@ -13,14 +13,22 @@ class JsonTableCell: UITableViewCell {
     @IBOutlet weak var myImage: UIImageView!
     @IBOutlet weak var articleTitle: UILabel!
     @IBOutlet weak var articleDesc: UILabel!
+    @IBOutlet weak var articleSource: UILabel!
+    @IBOutlet weak var articleTime: UILabel!
     
-        
+}
+
+struct Source: Codable{
+    let id:String?
+    let name:String?
 }
 
 struct Article: Codable{
     let title: String?
     let description: String?
     let url: String?
+    let source:Source?
+    let publishedAt:String?
 }
 
 struct ResultJson: Codable{
@@ -41,6 +49,8 @@ class JsonTableController: UITableViewController{
                                                    for: indexPath) as! JsonTableCell
         cell.articleTitle.text = items[indexPath.row].title
         cell.articleDesc.text = items[indexPath.row].desc
+        cell.articleSource.text = items[indexPath.row].source
+        cell.articleTime.text = items[indexPath.row].dateString
         return cell
       }
 
@@ -64,10 +74,13 @@ class JsonTableController: UITableViewController{
                 let json = try decode.decode(ResultJson.self, from: data!)
                 let articles = json.articles
                 for article in articles!{
-                let item = Item()
-                item.title = article.title!
-                item.link = article.url!
-                item.desc = article.description!
+                    let item = Item()
+                    item.title = article.title!
+                    item.link = article.url!
+                    item.desc = article.description!
+                    item.source = article.source!.name!
+                    item.convert_dcdate_date(currentString: article.publishedAt!)
+                    item.convert_date_to_string()
                 self.items.append(item)
             }
             self.tableView.reloadData()
