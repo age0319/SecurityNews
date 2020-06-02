@@ -31,10 +31,11 @@ class FavoriteViewController: UITableViewController{
         cell.favoriteTitle.text = items[indexPath.row].title
         return cell
     }
-    
-    override func viewDidLoad() {
-        super.viewDidLoad()
+        
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(false)
         items = loadFavs()
+        tableView.reloadData()
     }
         
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {

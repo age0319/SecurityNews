@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16097" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="HJ5-zW-59u">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16097" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="ZHd-lJ-0Zb">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
@@ -7,7 +7,7 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--一覧-->
+        <!--Security-->
         <scene sceneID="tne-QT-ifu">
             <objects>
                 <viewController id="BYZ-38-t0r" customClass="MyViewController" customModule="SecurityNews" customModuleProvider="target" sceneMemberID="viewController">
@@ -30,7 +30,7 @@
                             </scopeButtonTitles>
                         </searchBar>
                         <activityIndicatorView key="tableFooterView" hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="medium" id="mtx-Hl-fgD">
-                            <rect key="frame" x="0.0" y="793" width="414" height="44"/>
+                            <rect key="frame" x="0.0" y="788" width="414" height="44"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         </activityIndicatorView>
                         <prototypes>
@@ -95,24 +95,8 @@
                             </tableViewCell>
                         </prototypes>
                     </tableView>
-                    <toolbarItems>
-                        <barButtonItem systemItem="bookmarks" id="goU-0b-Gwg">
-                            <connections>
-                                <segue destination="HXu-yF-F54" kind="show" identifier="toBookMark" id="WVf-un-l3U"/>
-                            </connections>
-                        </barButtonItem>
-                        <barButtonItem systemItem="action" id="UaU-uL-F6I">
-                            <connections>
-                                <action selector="showActivityViewController:" destination="BYZ-38-t0r" id="fDT-wK-CZZ"/>
-                            </connections>
-                        </barButtonItem>
-                        <barButtonItem systemItem="play" id="PHo-M4-4Qc">
-                            <connections>
-                                <segue destination="iU7-kp-yu4" kind="show" id="9Df-vG-RSg"/>
-                            </connections>
-                        </barButtonItem>
-                    </toolbarItems>
-                    <navigationItem key="navigationItem" title="一覧" id="BjS-rN-d10"/>
+                    <tabBarItem key="tabBarItem" title="Security" image="checkmark.seal.fill" catalog="system" id="kme-6Y-I4J"/>
+                    <toolbarItems/>
                     <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
                         <outlet property="search" destination="uFR-dB-vSU" id="sfU-aq-7KK"/>
@@ -122,9 +106,9 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1042.0289855072465" y="138.61607142857142"/>
+            <point key="canvasLocation" x="70" y="140"/>
         </scene>
-        <!--Json Table Controller-->
+        <!--Technology-->
         <scene sceneID="xpB-Dd-nKH">
             <objects>
                 <tableViewController id="iU7-kp-yu4" customClass="JsonTableController" customModule="SecurityNews" customModuleProvider="target" sceneMemberID="viewController">
@@ -187,6 +171,7 @@
                                     <outlet property="articleSource" destination="pIt-fL-ccI" id="f5E-y9-lYT"/>
                                     <outlet property="articleTime" destination="KdQ-6f-dLk" id="34e-kZ-BPF"/>
                                     <outlet property="articleTitle" destination="NUE-q5-ofV" id="1U9-3D-A33"/>
+                                    <segue destination="kSm-ad-6UA" kind="show" id="8PI-tx-qaK"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
@@ -195,13 +180,33 @@
                             <outlet property="delegate" destination="iU7-kp-yu4" id="Ybf-8X-kJg"/>
                         </connections>
                     </tableView>
+                    <tabBarItem key="tabBarItem" title="Technology" image="desktopcomputer" catalog="system" id="KgZ-Eh-Pn6"/>
                     <navigationItem key="navigationItem" id="r25-B1-uh0"/>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="w6c-a8-XJ0" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="69.565217391304358" y="827.67857142857144"/>
         </scene>
-        <!--Favorite View Controller-->
+        <!--Main-->
+        <scene sceneID="YlA-Q0-UBi">
+            <objects>
+                <tabBarController title="Main" id="ZHd-lJ-0Zb" sceneMemberID="viewController">
+                    <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="RKT-uQ-mmt">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="49"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    </tabBar>
+                    <connections>
+                        <segue destination="BYZ-38-t0r" kind="relationship" relationship="viewControllers" id="fdD-U0-aAY"/>
+                        <segue destination="iU7-kp-yu4" kind="relationship" relationship="viewControllers" id="GZZ-5z-aDT"/>
+                        <segue destination="HXu-yF-F54" kind="relationship" relationship="viewControllers" id="Yss-qu-yXx"/>
+                    </connections>
+                </tabBarController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="k2X-Mh-q6e" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-993" y="954"/>
+        </scene>
+        <!--BookMark-->
         <scene sceneID="iNv-aQ-U05">
             <objects>
                 <tableViewController id="HXu-yF-F54" customClass="FavoriteViewController" customModule="SecurityNews" customModuleProvider="target" sceneMemberID="viewController">
@@ -209,9 +214,22 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <navigationBar key="tableHeaderView" contentMode="scaleToFill" id="gN3-GK-Qub">
+                            <rect key="frame" x="0.0" y="0.0" width="414" height="44"/>
+                            <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                            <items>
+                                <navigationItem title="BookMark" id="DqN-In-Xg2">
+                                    <barButtonItem key="rightBarButtonItem" systemItem="trash" id="aQF-7z-6Uu">
+                                        <connections>
+                                            <action selector="trash:" destination="HXu-yF-F54" id="dOQ-7I-3Qi"/>
+                                        </connections>
+                                    </barButtonItem>
+                                </navigationItem>
+                            </items>
+                        </navigationBar>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="FavCell" textLabel="xPW-ol-LC3" style="IBUITableViewCellStyleDefault" id="A3d-Sv-eXp" customClass="FavoriteViewCell" customModule="SecurityNews" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="28" width="414" height="43.5"/>
+                                <rect key="frame" x="0.0" y="72" width="414" height="43.5"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="A3d-Sv-eXp" id="Se7-ex-inn">
                                     <rect key="frame" x="0.0" y="0.0" width="414" height="43.5"/>
@@ -237,22 +255,11 @@
                             <outlet property="delegate" destination="HXu-yF-F54" id="rp1-uP-uon"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" id="8CH-is-CVP">
-                        <barButtonItem key="rightBarButtonItem" style="plain" id="sWO-X8-LTO">
-                            <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="YOV-Wc-XGI">
-                                <rect key="frame" x="320" y="11" width="74" height="22"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" image="trash" catalog="system"/>
-                                <connections>
-                                    <action selector="trash:" destination="HXu-yF-F54" eventType="touchUpInside" id="qKa-lk-VDd"/>
-                                </connections>
-                            </button>
-                        </barButtonItem>
-                    </navigationItem>
+                    <tabBarItem key="tabBarItem" title="BookMark" image="star.fill" id="2ms-ff-CWt"/>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="DhL-eq-49I" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1030" y="834"/>
+            <point key="canvasLocation" x="70" y="1538"/>
         </scene>
         <!--Detail View Controller-->
         <scene sceneID="Ajt-Og-AzZ">
@@ -263,7 +270,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <wkWebView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fqH-6u-HAu">
-                                <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                                <rect key="frame" x="0.0" y="-44" width="414" height="984"/>
                                 <color key="backgroundColor" red="0.36078431370000003" green="0.38823529410000002" blue="0.4039215686" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <wkWebViewConfiguration key="configuration">
                                     <audiovisualMediaTypes key="mediaTypesRequiringUserActionForPlayback" none="YES"/>
@@ -287,36 +294,15 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dL4-VV-uiv" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1834.7826086956522" y="139.95535714285714"/>
-        </scene>
-        <!--Navigation Controller-->
-        <scene sceneID="W9L-Vw-gl5">
-            <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" toolbarHidden="NO" id="HJ5-zW-59u" sceneMemberID="viewController">
-                    <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="ZR1-PR-kiG">
-                        <rect key="frame" x="0.0" y="44" width="414" height="44"/>
-                        <autoresizingMask key="autoresizingMask"/>
-                    </navigationBar>
-                    <nil name="viewControllers"/>
-                    <toolbar key="toolbar" opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="DBC-mt-7vG">
-                        <rect key="frame" x="0.0" y="813" width="414" height="49"/>
-                        <autoresizingMask key="autoresizingMask"/>
-                    </toolbar>
-                    <connections>
-                        <segue destination="BYZ-38-t0r" kind="relationship" relationship="rootViewController" id="pTe-N9-Seg"/>
-                    </connections>
-                </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="u3y-k8-6En" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="131.8840579710145" y="138.61607142857142"/>
+            <point key="canvasLocation" x="1270" y="847"/>
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
         <segue reference="EsN-q8-lCb"/>
     </inferredMetricsTieBreakers>
     <resources>
+        <image name="checkmark.seal.fill" catalog="system" width="128" height="122"/>
+        <image name="desktopcomputer" catalog="system" width="128" height="101"/>
         <image name="star.fill" width="19" height="18"/>
-        <image name="trash" catalog="system" width="121" height="128"/>
     </resources>
 </document>
