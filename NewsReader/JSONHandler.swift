@@ -8,7 +8,7 @@
 
 import Foundation
 
-class ParseJSON {
+class JSONHandler {
     
     struct Source: Codable{
         let id:String?

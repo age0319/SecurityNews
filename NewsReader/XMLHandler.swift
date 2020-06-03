@@ -8,7 +8,7 @@
 
 import Foundation
 
-class MyParse : NSObject,XMLParserDelegate{
+class XMLHandler : NSObject,XMLParserDelegate{
     var parser:XMLParser!
     var items = [Item]()
     var item:Item?
@@ -23,6 +23,31 @@ class MyParse : NSObject,XMLParserDelegate{
                        "https://jp.techcrunch.com/news/security/feed/",
                        "https://gigazine.net/news/rss_2.0/"]
     
+    func downloadPararrel(completion: @escaping ([Item]?) -> ()){
+        for urlString in self.dataSource{
+        
+        print("start fetching",urlString)
+        
+        let req_url = URL(string: urlString)
+        let req = URLRequest(url: req_url!)
+        let session = URLSession(configuration: .default, delegate: nil, delegateQueue: OperationQueue.main)
+
+        let task = session.dataTask(with: req, completionHandler: {
+            (data, response, error) in
+            session.finishTasksAndInvalidate()
+            print("finish",data!.count)
+            
+            self.parser = XMLParser(data: data!)
+            self.parser.delegate = self
+            self.parser.parse()
+           
+            completion(self.items)
+               })
+        
+        task.resume()
+        }
+    }
+    
     func startDownload() -> [Item]{
         self.items = []
         
@@ -35,6 +60,8 @@ class MyParse : NSObject,XMLParserDelegate{
                 }
             }
         }
+    
+        
         self.items = self.items.sorted(by: {
             $0.date.compare($1.date) == .orderedDescending
         })

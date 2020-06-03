@@ -99,38 +99,29 @@ class TechVC: UITableViewController, ArticleCellDelegate,UISearchBarDelegate{
         super.viewDidLoad()
         setupSearchBar()
         spinner.startAnimating()
-  
-        let handler = ParseJSON()
-        handler.download(completion: { items in
-            if let items = items {
-                self.items = items
-                self.currentItems = items
-                self.spinner.stopAnimating()
-                self.updateFavs()
-                self.table.reloadData()
-            }
-        })
+        downloadAndReload()
+        spinner.stopAnimating()
         table.refreshControl = myRefreshControl
         myRefreshControl.addTarget(self, action: #selector(refresh(sender:)), for: .valueChanged)
     }
     
     @objc private func refresh(sender: UIRefreshControl){
-        
-        
-        search.selectedScopeButtonIndex = 0;
-        
-        let handler = ParseJSON()
-        handler.download(completion: { items in
+        self.search.selectedScopeButtonIndex = 0;
+        downloadAndReload()
+        sender.endRefreshing()
+    }
+    
+    func downloadAndReload(){
+        let handler = JSONHandler()
+        handler.download(completion: {items in
             if let items = items {
                 self.items = items
                 self.currentItems = items
                 self.updateFavs()
                 self.table.reloadData()
-                sender.endRefreshing()
-            }
+               }
         })
     }
-    
     
     func reloadCell(index: IndexPath) {
         tableView.reloadRows(at: [index], with: .fade)

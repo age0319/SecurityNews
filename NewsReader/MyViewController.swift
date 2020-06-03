@@ -108,39 +108,48 @@ class MyViewController: UITableViewController, ArticleCellDelegate,UISearchBarDe
     override func viewDidLoad() {
         super.viewDidLoad()
         setupSearchBar()
-        spinner.startAnimating()
-        let globalQueue = DispatchQueue.global(
-                      qos: DispatchQoS.QoSClass.userInitiated)
-              globalQueue.async { [ weak self] in
-                let data = MyParse().startDownload()
-              DispatchQueue.main.async {
-                self?.items = data
-                self?.currentItems = data
-                self?.spinner.stopAnimating()
-                self?.updateFavs()
-                self?.table.reloadData()
-              }
-        }
-        
         table.refreshControl = myRefreshControl
         myRefreshControl.addTarget(self, action: #selector(refresh(sender:)), for: .valueChanged)
+        downloadAndReload()
     }
     
     @objc private func refresh(sender: UIRefreshControl){
+        search.selectedScopeButtonIndex = 0;
+        downloadAndReload()
+        sender.endRefreshing()
+    }
+    
+    func downloadAndReload(){
+        let handler = XMLHandler()
+        handler.downloadPararrel(completion: { returnData in
+            if let returnData = returnData {
+                self.items = self.sortAndFilter(pureData: returnData)
+                self.currentItems = self.items
+                self.updateFavs()
+                self.table.reloadData()
+           }
+        })
+    }
+    
+    func sortAndFilter(pureData:[Item])->[Item]{
+        var arrangedData = [Item]()
+        arrangedData = pureData.sorted(by: {
+            $0.date.compare($1.date) == .orderedDescending
+        })
         
-        let globalQueue = DispatchQueue.global(
-            qos: DispatchQoS.QoSClass.userInitiated)
-        globalQueue.async { [ weak self] in
-            let data = MyParse().startDownload()
-            DispatchQueue.main.async {
-                self?.items = data
-                self?.currentItems = data
-                self?.search.selectedScopeButtonIndex = 0;
-                self?.updateFavs()
-                self?.table.reloadData()
-                sender.endRefreshing()
+        arrangedData = arrangedData.filter({ item -> Bool in
+            !item.title.contains("最新記事一覧")
+        })
+        
+       arrangedData = arrangedData.filter({ item -> Bool in
+            if item.source.contains("Gigazine"){
+                return item.subject.contains("セキュリティ")
+            }else{
+                return true
             }
-        }
+        })
+        
+        return arrangedData
     }
     
     
