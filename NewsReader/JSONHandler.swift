@@ -49,7 +49,7 @@ class JSONHandler {
                     let item = Item()
                     item.title = article.title!
                     item.link = article.url!
-                    item.desc = article.description!
+//                    item.desc = article.description!
                     item.source = article.source!.name!
                     item.convert_dcdate_date(currentString: article.publishedAt!)
                     item.convert_date_to_string()

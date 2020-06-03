@@ -164,6 +164,11 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" title="お気に入り" id="8ht-wc-0HZ">
+                        <barButtonItem key="leftBarButtonItem" systemItem="action" id="Fmt-Xf-aTS">
+                            <connections>
+                                <action selector="onAction:" destination="HXu-yF-F54" id="yK4-sN-yPc"/>
+                            </connections>
+                        </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" systemItem="trash" id="FgU-KP-8fG">
                             <connections>
                                 <action selector="onTrash:" destination="HXu-yF-F54" id="WWY-NR-7lE"/>
@@ -370,7 +375,7 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="T0B-sc-aE5"/>
+        <segue reference="O1K-AB-W4W"/>
     </inferredMetricsTieBreakers>
     <resources>
         <image name="checkmark.seal.fill" catalog="system" width="128" height="122"/>

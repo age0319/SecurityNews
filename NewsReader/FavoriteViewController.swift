@@ -17,7 +17,18 @@ class FavoriteViewController: UITableViewController{
     
     var items = [Item]()
     
-   
+    @IBAction func onAction(_ sender: Any) {
+
+        var links = [String]()
+        
+        for i in items{
+            links.append(i.getLink())
+        }
+        let controller = UIActivityViewController(activityItems: links, applicationActivities: nil)
+        self.present(controller,animated: true, completion: nil)
+    }
+    
+    
     @IBAction func onTrash(_ sender: Any) {
         trashFavs()
     }

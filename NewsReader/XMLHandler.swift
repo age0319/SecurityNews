@@ -60,7 +60,6 @@ class XMLHandler : NSObject,XMLParserDelegate{
                 }
             }
         }
-    
         
         self.items = self.items.sorted(by: {
             $0.date.compare($1.date) == .orderedDescending
