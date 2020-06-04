@@ -159,12 +159,16 @@
                                     </subviews>
                                     <constraints>
                                         <constraint firstItem="2SH-fs-4Av" firstAttribute="leading" secondItem="OsK-RQ-j75" secondAttribute="leadingMargin" id="BL8-6j-pnd"/>
-                                        <constraint firstItem="grm-JY-prX" firstAttribute="centerY" secondItem="2SH-fs-4Av" secondAttribute="centerY" id="D47-FW-lOl"/>
-                                        <constraint firstItem="grm-JY-prX" firstAttribute="trailing" secondItem="OsK-RQ-j75" secondAttribute="trailingMargin" id="YBl-fW-ZOQ"/>
+                                        <constraint firstItem="grm-JY-prX" firstAttribute="top" secondItem="OsK-RQ-j75" secondAttribute="topMargin" constant="11" id="UdT-6O-2Un"/>
                                         <constraint firstItem="2SH-fs-4Av" firstAttribute="centerY" secondItem="OsK-RQ-j75" secondAttribute="centerY" id="cYs-bs-z9c"/>
-                                        <constraint firstItem="grm-JY-prX" firstAttribute="top" secondItem="OsK-RQ-j75" secondAttribute="topMargin" constant="11" id="esX-kM-HpK"/>
+                                        <constraint firstItem="grm-JY-prX" firstAttribute="centerY" secondItem="2SH-fs-4Av" secondAttribute="centerY" id="ihE-fO-k7Q"/>
+                                        <constraint firstItem="grm-JY-prX" firstAttribute="trailing" secondItem="OsK-RQ-j75" secondAttribute="trailingMargin" id="suz-R7-Ziv"/>
                                     </constraints>
                                 </tableViewCellContentView>
+                                <connections>
+                                    <outlet property="categoryLabel" destination="2SH-fs-4Av" id="oA3-5T-flw"/>
+                                    <outlet property="numberLabel" destination="grm-JY-prX" id="s8h-W2-l9E"/>
+                                </connections>
                             </tableViewCell>
                         </prototypes>
                     </tableView>

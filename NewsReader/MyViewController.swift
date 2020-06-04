@@ -133,6 +133,7 @@ class MyViewController: UITableViewController, ArticleCellDelegate,UISearchBarDe
     
     func sortAndFilter(pureData:[Item])->[Item]{
         var arrangedData = [Item]()
+        
         arrangedData = pureData.sorted(by: {
             $0.date.compare($1.date) == .orderedDescending
         })
