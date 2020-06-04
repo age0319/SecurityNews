@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		49474AC62488C76E002858D0 /* SummaryVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49474AC52488C76E002858D0 /* SummaryVC.swift */; };
 		4997DC93247FAE0B00560099 /* FavoriteViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4997DC92247FAE0B00560099 /* FavoriteViewController.swift */; };
 		4997DC97248675E900560099 /* TechVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4997DC96248675E900560099 /* TechVC.swift */; };
 		4997DC992486771700560099 /* JSONHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4997DC982486771700560099 /* JSONHandler.swift */; };
@@ -24,6 +25,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		49474AC52488C76E002858D0 /* SummaryVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SummaryVC.swift; sourceTree = "<group>"; };
 		4997DC92247FAE0B00560099 /* FavoriteViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteViewController.swift; sourceTree = "<group>"; };
 		4997DC96248675E900560099 /* TechVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TechVC.swift; sourceTree = "<group>"; };
 		4997DC982486771700560099 /* JSONHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JSONHandler.swift; sourceTree = "<group>"; };
@@ -88,6 +90,7 @@
 				4997DC92247FAE0B00560099 /* FavoriteViewController.swift */,
 				4997DC96248675E900560099 /* TechVC.swift */,
 				4997DC982486771700560099 /* JSONHandler.swift */,
+				49474AC52488C76E002858D0 /* SummaryVC.swift */,
 			);
 			path = NewsReader;
 			sourceTree = "<group>";
@@ -176,6 +179,7 @@
 				B19EBD5F24749F7B00DB7AB4 /* DetailViewController.swift in Sources */,
 				B14E495B247E3CD4002635ED /* MyTableViewCell.swift in Sources */,
 				B14E4957247AA0BC002635ED /* XMLHandler.swift in Sources */,
+				49474AC62488C76E002858D0 /* SummaryVC.swift in Sources */,
 				B19EBD44247349BE00DB7AB4 /* SceneDelegate.swift in Sources */,
 				4997DC93247FAE0B00560099 /* FavoriteViewController.swift in Sources */,
 				4997DC992486771700560099 /* JSONHandler.swift in Sources */,

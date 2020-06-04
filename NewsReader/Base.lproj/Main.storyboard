@@ -118,6 +118,7 @@
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     </tabBar>
                     <connections>
+                        <segue destination="8Yb-j4-uGW" kind="relationship" relationship="viewControllers" id="OWf-AJ-P4f"/>
                         <segue destination="kA3-8f-Q9s" kind="relationship" relationship="viewControllers" id="fdD-U0-aAY"/>
                         <segue destination="EaG-Xu-hRJ" kind="relationship" relationship="viewControllers" id="NdO-cq-dSS"/>
                         <segue destination="ezm-0q-IAr" kind="relationship" relationship="viewControllers" id="Yss-qu-yXx"/>
@@ -126,6 +127,52 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="k2X-Mh-q6e" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-993" y="954"/>
+        </scene>
+        <!--サマリー-->
+        <scene sceneID="qAn-hG-Sod">
+            <objects>
+                <viewController id="PoA-ZT-nS7" customClass="SummaryVC" customModule="SecurityNews" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="veQ-rg-dfB">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <prototypes>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="SummaryCell" rowHeight="81" id="hdK-yz-xMa" customClass="SummaryCell" customModule="SecurityNews" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="28" width="414" height="81"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="hdK-yz-xMa" id="OsK-RQ-j75">
+                                    <rect key="frame" x="0.0" y="0.0" width="414" height="81"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Category" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2SH-fs-4Av">
+                                            <rect key="frame" x="20" y="22.5" width="119" height="36"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="30"/>
+                                            <nil key="textColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Number" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="grm-JY-prX">
+                                            <rect key="frame" x="289" y="22" width="105" height="36"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="30"/>
+                                            <nil key="textColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
+                                    <constraints>
+                                        <constraint firstItem="2SH-fs-4Av" firstAttribute="leading" secondItem="OsK-RQ-j75" secondAttribute="leadingMargin" id="BL8-6j-pnd"/>
+                                        <constraint firstItem="grm-JY-prX" firstAttribute="centerY" secondItem="2SH-fs-4Av" secondAttribute="centerY" id="D47-FW-lOl"/>
+                                        <constraint firstItem="grm-JY-prX" firstAttribute="trailing" secondItem="OsK-RQ-j75" secondAttribute="trailingMargin" id="YBl-fW-ZOQ"/>
+                                        <constraint firstItem="2SH-fs-4Av" firstAttribute="centerY" secondItem="OsK-RQ-j75" secondAttribute="centerY" id="cYs-bs-z9c"/>
+                                        <constraint firstItem="grm-JY-prX" firstAttribute="top" secondItem="OsK-RQ-j75" secondAttribute="topMargin" constant="11" id="esX-kM-HpK"/>
+                                    </constraints>
+                                </tableViewCellContentView>
+                            </tableViewCell>
+                        </prototypes>
+                    </tableView>
+                    <navigationItem key="navigationItem" title="サマリー" id="vOB-NW-qU0"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="yMA-HW-ar7" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="979.71014492753636" y="2270.7589285714284"/>
         </scene>
         <!--お気に入り-->
         <scene sceneID="iNv-aQ-U05">
@@ -373,6 +420,25 @@
             </objects>
             <point key="canvasLocation" x="70" y="828"/>
         </scene>
+        <!--Summary-->
+        <scene sceneID="8yb-Ox-H3s">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="8Yb-j4-uGW" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Summary" image="info.circle.fill" catalog="system" id="LfE-6b-Eds"/>
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="LMv-xN-oqI">
+                        <rect key="frame" x="0.0" y="44" width="414" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="PoA-ZT-nS7" kind="relationship" relationship="rootViewController" id="gtP-AP-svL"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="H2y-pz-isF" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="69.565217391304358" y="2270.7589285714284"/>
+        </scene>
     </scenes>
     <inferredMetricsTieBreakers>
         <segue reference="O1K-AB-W4W"/>
@@ -380,6 +446,7 @@
     <resources>
         <image name="checkmark.seal.fill" catalog="system" width="128" height="122"/>
         <image name="desktopcomputer" catalog="system" width="128" height="101"/>
+        <image name="info.circle.fill" catalog="system" width="128" height="121"/>
         <image name="star.fill" width="19" height="18"/>
     </resources>
 </document>
