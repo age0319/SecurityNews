@@ -9,25 +9,50 @@
 import UIKit
 import Charts
 
-class ChartVC: UIViewController {
+protocol MyDelegate{
+     func didFetchData(data:[Item])
+}
+
+class ChartVC: UIViewController,MyDelegate {
     
     @IBOutlet weak var barcht: BarChartView!
     @IBOutlet weak var piecht: PieChartView!
     
+    
     let months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun"]
     let unitsSold = [10.0, 4.0, 6.0, 3.0, 12.0, 16.0]
+    
+    var categoryList = ["Android",
+                        "iOS",
+                        "Windows",
+                        "Mac",
+                        "Linux",
+                        "IE",
+                        "FireFox",
+                        "Safari",
+                        "Chrome",
+                        "Edge"]
+    
+    var countList = Array(repeating: 0, count: 10)
+    
+    var items = [Item]()
+    
+    func didFetchData(data: [Item]) {
+        print(data.count)
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        setBarCht()
-        setPieCht()
+        countArticle()
+        setBarCht(xLabel: months, yData:unitsSold)
+        setPieCht(xLabel: months, yData:unitsSold)
     }
     
-    func setBarCht(){
+    func setBarCht(xLabel:[String],yData:[Double]){
         var entry = [ChartDataEntry]()
         
-        for (i,d) in unitsSold.enumerated(){
+        for (i,d) in yData.enumerated(){
             entry.append(BarChartDataEntry(x: Double(i),y: d))
         }
         
@@ -38,7 +63,7 @@ class ChartVC: UIViewController {
         
         // X軸のラベルを設定
         let xaxis = XAxis()
-        xaxis.valueFormatter = BarChartFormatter()
+        xaxis.valueFormatter = BarChartFormatter(xlabel: xLabel)
         barcht.xAxis.valueFormatter = xaxis.valueFormatter
 
         // x軸のラベルをボトムに表示
@@ -53,28 +78,35 @@ class ChartVC: UIViewController {
     
     public class BarChartFormatter: NSObject, IAxisValueFormatter{
         // x軸のラベル
-        var months: [String]! = ["Jan", "Feb", "Mar", "Apr", "May", "Jun"]
-
+//        var months: [String]! = ["Jan", "Feb", "Mar", "Apr", "May", "Jun"]
+        
+        var xLabel = [String]()
+        
+        public init(xlabel:[String]) {
+            super.init()
+            self.xLabel = xlabel
+        }
+        
         // デリゲート。TableViewのcellForRowAtで、indexで渡されたセルをレンダリングするのに似てる。
         public func stringForValue(_ value: Double, axis: AxisBase?) -> String {
             // 0 -> Jan, 1 -> Feb...
-            return months[Int(value)]
+            return xLabel[Int(value)]
         }
     }
     
-    func setPieCht(){
+    func setPieCht(xLabel:[String],yData:[Double]){
         
         var dataEntries: [ChartDataEntry] = []
 
-        for i in 0..<months.count {
-            dataEntries.append( PieChartDataEntry(value: unitsSold[i], label: months[i], data: unitsSold[i]))
+        for i in 0..<xLabel.count {
+            dataEntries.append( PieChartDataEntry(value: yData[i], label: xLabel[i], data: yData[i]))
         }
 
         let pieChartDataSet = PieChartDataSet(entries: dataEntries, label: "Units Sold")
 
         var colors: [UIColor] = []
 
-        for _ in 0..<months.count {
+        for _ in 0..<xLabel.count {
             let red = Double(arc4random_uniform(256))
             let green = Double(arc4random_uniform(256))
             let blue = Double(arc4random_uniform(256))
@@ -88,6 +120,49 @@ class ChartVC: UIViewController {
         piecht.data = PieChartData(dataSet: pieChartDataSet)
         
         piecht.backgroundColor = UIColor(red: 189/255, green: 195/255, blue: 199/255, alpha: 1)
+    }
+    
+     func download(){
+        let handler = XMLHandler()
+        handler.downloadPararrel(completion: { returnData in
+        if let returnData = returnData {
+            let data = self.sortAndFilter(pureData: returnData)
+            self.didFetchData(data: data)
+            }
+        })
+    }
+     
+    func sortAndFilter(pureData:[Item])->[Item]{
+        var arrangedData = [Item]()
+            
+        arrangedData = pureData.sorted(by: {
+            $0.date.compare($1.date) == .orderedDescending
+        })
+        
+        arrangedData = arrangedData.filter({ item -> Bool in
+            !item.title.contains("最新記事一覧")
+        })
+        
+       arrangedData = arrangedData.filter({ item -> Bool in
+            if item.source.contains("Gigazine"){
+                return item.subject.contains("セキュリティ")
+            }else{
+                return true
+            }
+        })
+        
+        return arrangedData
+    }
+        
+    func countArticle(){
+        download()
+        for (i,category) in categoryList.enumerated(){
+            let filtereditems = items.filter({ item -> Bool in
+                item.title.lowercased().contains(category.lowercased())
+            })
+            let numberOfArticle = filtereditems.count
+            countList[i] = numberOfArticle
+        }
     }
     
 }
