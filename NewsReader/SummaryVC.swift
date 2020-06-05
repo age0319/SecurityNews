@@ -9,6 +9,7 @@
 import Foundation
 
 import UIKit
+import Charts
 
 class SummaryCell: UITableViewCell {
     @IBOutlet weak var categoryLabel: UILabel!
