@@ -452,12 +452,13 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="mfI-Ln-e4w" customClass="LineChartView" customModule="Charts">
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="mfI-Ln-e4w" customClass="BarChartView" customModule="Charts">
                                 <rect key="frame" x="0.0" y="114" width="414" height="302"/>
+                                <color key="backgroundColor" systemColor="opaqueSeparatorColor" red="0.77647058820000003" green="0.77647058820000003" blue="0.7843137255" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="DR5-xn-Syu" customClass="PieChartView" customModule="Charts">
                                 <rect key="frame" x="0.0" y="436" width="414" height="358"/>
-                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </view>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
@@ -475,7 +476,7 @@
                     </view>
                     <tabBarItem key="tabBarItem" title="Chart" image="chart.pie.fill" catalog="system" id="O6R-C4-V2l"/>
                     <connections>
-                        <outlet property="linechart" destination="mfI-Ln-e4w" id="6Q6-CS-M4l"/>
+                        <outlet property="barcht" destination="mfI-Ln-e4w" id="YnI-PK-2Po"/>
                         <outlet property="piecht" destination="DR5-xn-Syu" id="RcT-Hr-4ef"/>
                     </connections>
                 </viewController>

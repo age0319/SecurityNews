@@ -6,13 +6,12 @@
 //  Copyright © 2020 Harunobu Agematsu. All rights reserved.
 //
 
-import Foundation
-
 import UIKit
 import Charts
 
 class ChartVC: UIViewController {
-    @IBOutlet weak var linechart: LineChartView!
+    
+    @IBOutlet weak var barcht: BarChartView!
     @IBOutlet weak var piecht: PieChartView!
     
     let months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun"]
@@ -21,21 +20,46 @@ class ChartVC: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        setLineGraph()
+        setBarCht()
         setPieCht()
     }
     
-    func setLineGraph(){
+    func setBarCht(){
         var entry = [ChartDataEntry]()
         
         for (i,d) in unitsSold.enumerated(){
-            entry.append(ChartDataEntry(x: Double(i),y: d))
+            entry.append(BarChartDataEntry(x: Double(i),y: d))
         }
         
-        let dataset = LineChartDataSet(entries: entry,label: "Units Sold")
-                
-        linechart.data = LineChartData(dataSet: dataset)
-        linechart.chartDescription?.text = "Item Sold Chart"
+        let dataset = BarChartDataSet(entries: entry,label: "Units Sold")
+        dataset.colors = [UIColor(red: 230/255, green: 126/255, blue: 34/255, alpha: 1)]
+        
+        barcht.data = BarChartData(dataSet: dataset)
+        
+        // X軸のラベルを設定
+        let xaxis = XAxis()
+        xaxis.valueFormatter = BarChartFormatter()
+        barcht.xAxis.valueFormatter = xaxis.valueFormatter
+
+        // x軸のラベルをボトムに表示
+        barcht.xAxis.labelPosition = .bottom
+
+        // グラフの背景色
+        barcht.backgroundColor = UIColor(red: 189/255, green: 195/255, blue: 199/255, alpha: 1)
+
+        // グラフの棒をニョキッとアニメーションさせる
+        barcht.animate(xAxisDuration: 2.0, yAxisDuration: 2.0)
+    }
+    
+    public class BarChartFormatter: NSObject, IAxisValueFormatter{
+        // x軸のラベル
+        var months: [String]! = ["Jan", "Feb", "Mar", "Apr", "May", "Jun"]
+
+        // デリゲート。TableViewのcellForRowAtで、indexで渡されたセルをレンダリングするのに似てる。
+        public func stringForValue(_ value: Double, axis: AxisBase?) -> String {
+            // 0 -> Jan, 1 -> Feb...
+            return months[Int(value)]
+        }
     }
     
     func setPieCht(){
@@ -43,15 +67,10 @@ class ChartVC: UIViewController {
         var dataEntries: [ChartDataEntry] = []
 
         for i in 0..<months.count {
-            let dataEntry1 = PieChartDataEntry(value: unitsSold[i], label: months[i], data: unitsSold[i])
-
-            dataEntries.append(dataEntry1)
+            dataEntries.append( PieChartDataEntry(value: unitsSold[i], label: months[i], data: unitsSold[i]))
         }
 
         let pieChartDataSet = PieChartDataSet(entries: dataEntries, label: "Units Sold")
-        let pieChartData = PieChartData(dataSet: pieChartDataSet)
-
-        piecht.data = pieChartData
 
         var colors: [UIColor] = []
 
@@ -65,6 +84,10 @@ class ChartVC: UIViewController {
         }
 
         pieChartDataSet.colors = colors
+        
+        piecht.data = PieChartData(dataSet: pieChartDataSet)
+        
+        piecht.backgroundColor = UIColor(red: 189/255, green: 195/255, blue: 199/255, alpha: 1)
     }
     
 }
