@@ -110,7 +110,10 @@ class MyViewController: UITableViewController, ArticleCellDelegate,UISearchBarDe
         setupSearchBar()
         table.refreshControl = myRefreshControl
         myRefreshControl.addTarget(self, action: #selector(refresh(sender:)), for: .valueChanged)
-        downloadAndReload()
+        items = loadItems()
+        currentItems = self.items
+        updateFavs()
+        table.reloadData()
     }
     
     @objc private func refresh(sender: UIRefreshControl){
@@ -165,6 +168,15 @@ class MyViewController: UITableViewController, ArticleCellDelegate,UISearchBarDe
             let controller = segue.destination as! DetailViewController
             controller.title = item.title
             controller.link = item.link
+        }
+    }
+    
+    func loadItems() -> [Item]{
+        if let data = UserDefaults.standard.data(forKey: "data"){
+            return try! NSKeyedUnarchiver.unarchiveTopLevelObjectWithData(data) as! [Item]
+        }else{
+            let items = [Item]()
+            return items
         }
     }
 

@@ -25,8 +25,13 @@ class XMLHandler : NSObject,XMLParserDelegate{
     
     func downloadPararrel(completion: @escaping ([Item]?) -> ()){
         
+        let dispatchGroup = DispatchGroup()
+        
         for urlString in self.dataSource{
+
             print("start fetching",urlString)
+            
+            dispatchGroup.enter()
             
             let req_url = URL(string: urlString)
             let req = URLRequest(url: req_url!)
@@ -34,7 +39,6 @@ class XMLHandler : NSObject,XMLParserDelegate{
 
             let task = session.dataTask(with: req, completionHandler: {
                 (data, response, error) in
-                
                 session.finishTasksAndInvalidate()
                 print("finish",data!.count)
                 
@@ -42,12 +46,14 @@ class XMLHandler : NSObject,XMLParserDelegate{
                 self.parser.delegate = self
                 self.parser.parse()
                
-                completion(self.items)
+                dispatchGroup.leave()
                    })
             
             task.resume()
             }
-        
+        dispatchGroup.notify(queue: .main){
+            completion(self.items)
+        }
     }
     
     func startDownload() -> [Item]{

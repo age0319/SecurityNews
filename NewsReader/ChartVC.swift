@@ -36,12 +36,37 @@ class ChartVC: UIViewController,MyDelegate {
     var items = [Item]()
     
     func download(){
+        let dispatchGroup = DispatchGroup()
         let handler = XMLHandler()
+        
+        dispatchGroup.enter()
         handler.downloadPararrel(completion: { returnData in
             let data = self.sortAndFilter(pureData: returnData!)
-            self.makeCharts(items: data)
+            self.saveItems(data: data)
+            dispatchGroup.leave()
         })
-        
+        dispatchGroup.notify(queue: .main) {
+            self.items = self.loadItems()
+            self.makeCharts(items: self.items)
+        }
+
+    }
+    
+    func loadItems() -> [Item]{
+        if let data = UserDefaults.standard.data(forKey: "data"){
+            return try! NSKeyedUnarchiver.unarchiveTopLevelObjectWithData(data) as! [Item]
+        }else{
+            let items = [Item]()
+            return items
+        }
+    }
+    
+    func saveItems(data: [Item]){
+        let userDefaults = UserDefaults.standard
+        guard let encodedData = try? NSKeyedArchiver.archivedData(withRootObject: data, requiringSecureCoding: true)else{
+            fatalError()
+        }
+        userDefaults.set(encodedData, forKey: "data")
     }
     
     func makeCharts(items: [Item]) {
@@ -62,7 +87,6 @@ class ChartVC: UIViewController,MyDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         download()
     }
     

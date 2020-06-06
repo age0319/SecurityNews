@@ -18,9 +18,8 @@ class Item:NSObject, NSSecureCoding{
     var date = Date()
     var source = ""
     var isFavorite = Bool()
+    //gigazineのカテゴリー
     var subject = ""
-    var desc = ""
-    
     override init() {
     }
     
@@ -31,13 +30,20 @@ class Item:NSObject, NSSecureCoding{
         if let link = decoder.decodeObject(forKey: "link") as? String{
             self.link = link
         }
-        
+        if let dateString = decoder.decodeObject(forKey: "dateString") as? String{
+            self.dateString = dateString
+        }
+        if let source = decoder.decodeObject(forKey: "source") as? String{
+            self.source = source
+        }
         self.isFavorite = decoder.decodeBool(forKey: "isFavorite")
     }
     
     func encode(with coder: NSCoder) {
         coder.encode(self.title, forKey: "title")
         coder.encode(self.link, forKey: "link")
+        coder.encode(self.dateString, forKey: "dateString")
+        coder.encode(self.source,forKey: "source")
         coder.encode(self.isFavorite, forKey: "isFavorite")
     }
     
