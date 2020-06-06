@@ -99,12 +99,6 @@ class MyViewController: UITableViewController, ArticleCellDelegate,UISearchBarDe
         return cell
     }
     
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
-        updateFavs()
-        table.reloadData()
-    }
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         setupSearchBar()
@@ -112,9 +106,13 @@ class MyViewController: UITableViewController, ArticleCellDelegate,UISearchBarDe
         myRefreshControl.addTarget(self, action: #selector(refresh(sender:)), for: .valueChanged)
         items = loadItems()
         currentItems = self.items
-        updateFavs()
-        table.reloadData()
     }
+    
+    override func viewDidAppear(_ animated: Bool) {
+           super.viewDidAppear(animated)
+           updateFavs()
+           table.reloadData()
+       }
     
     @objc private func refresh(sender: UIRefreshControl){
         search.selectedScopeButtonIndex = 0;

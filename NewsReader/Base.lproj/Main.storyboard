@@ -119,61 +119,60 @@
                     </tabBar>
                     <connections>
                         <segue destination="672-FL-rS1" kind="relationship" relationship="viewControllers" id="uKz-SX-nJ9"/>
-                        <segue destination="8Yb-j4-uGW" kind="relationship" relationship="viewControllers" id="OWf-AJ-P4f"/>
                         <segue destination="kA3-8f-Q9s" kind="relationship" relationship="viewControllers" id="fdD-U0-aAY"/>
                         <segue destination="EaG-Xu-hRJ" kind="relationship" relationship="viewControllers" id="NdO-cq-dSS"/>
                         <segue destination="ezm-0q-IAr" kind="relationship" relationship="viewControllers" id="Yss-qu-yXx"/>
+                        <segue destination="8Yb-j4-uGW" kind="relationship" relationship="viewControllers" id="OWf-AJ-P4f"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="k2X-Mh-q6e" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-993" y="954"/>
         </scene>
-        <!--サマリー-->
+        <!--Setting-->
         <scene sceneID="qAn-hG-Sod">
             <objects>
-                <viewController id="PoA-ZT-nS7" customClass="SummaryVC" customModule="SecurityNews" customModuleProvider="target" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="veQ-rg-dfB">
+                <viewController id="PoA-ZT-nS7" customClass="SettingVC" customModule="SecurityNews" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="80" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="veQ-rg-dfB">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="SummaryCell" rowHeight="81" id="hdK-yz-xMa" customClass="SummaryCell" customModule="SecurityNews" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="28" width="414" height="81"/>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="SettingCell" rowHeight="80" id="hdK-yz-xMa" customClass="SettingCell" customModule="SecurityNews" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="28" width="414" height="80"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="hdK-yz-xMa" id="OsK-RQ-j75">
-                                    <rect key="frame" x="0.0" y="0.0" width="414" height="81"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="414" height="80"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Category" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2SH-fs-4Av">
-                                            <rect key="frame" x="20" y="22.5" width="119" height="36"/>
-                                            <fontDescription key="fontDescription" type="system" pointSize="30"/>
-                                            <nil key="textColor"/>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Q5c-fJ-BsI">
+                                            <rect key="frame" x="20" y="49" width="40" height="20"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                            <color key="textColor" systemColor="systemGray2Color" red="0.68235294120000001" green="0.68235294120000001" blue="0.69803921570000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Number" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="grm-JY-prX">
-                                            <rect key="frame" x="289" y="22" width="105" height="36"/>
-                                            <fontDescription key="fontDescription" type="system" pointSize="30"/>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="F4n-RX-ObZ">
+                                            <rect key="frame" x="20" y="22" width="48" height="24"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="20"/>
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                     </subviews>
                                     <constraints>
-                                        <constraint firstItem="2SH-fs-4Av" firstAttribute="leading" secondItem="OsK-RQ-j75" secondAttribute="leadingMargin" id="BL8-6j-pnd"/>
-                                        <constraint firstItem="grm-JY-prX" firstAttribute="top" secondItem="OsK-RQ-j75" secondAttribute="topMargin" constant="11" id="UdT-6O-2Un"/>
-                                        <constraint firstItem="2SH-fs-4Av" firstAttribute="centerY" secondItem="OsK-RQ-j75" secondAttribute="centerY" id="cYs-bs-z9c"/>
-                                        <constraint firstItem="grm-JY-prX" firstAttribute="centerY" secondItem="2SH-fs-4Av" secondAttribute="centerY" id="ihE-fO-k7Q"/>
-                                        <constraint firstItem="grm-JY-prX" firstAttribute="trailing" secondItem="OsK-RQ-j75" secondAttribute="trailingMargin" id="suz-R7-Ziv"/>
+                                        <constraint firstItem="F4n-RX-ObZ" firstAttribute="top" secondItem="OsK-RQ-j75" secondAttribute="topMargin" constant="11" id="F7a-Uj-7VN"/>
+                                        <constraint firstItem="F4n-RX-ObZ" firstAttribute="leading" secondItem="OsK-RQ-j75" secondAttribute="leadingMargin" id="aGw-yR-h0J"/>
+                                        <constraint firstItem="Q5c-fJ-BsI" firstAttribute="top" secondItem="F4n-RX-ObZ" secondAttribute="bottom" constant="3" id="qh5-2S-FS5"/>
+                                        <constraint firstItem="F4n-RX-ObZ" firstAttribute="leading" secondItem="Q5c-fJ-BsI" secondAttribute="leading" id="sSp-wp-XHi"/>
                                     </constraints>
                                 </tableViewCellContentView>
                                 <connections>
-                                    <outlet property="categoryLabel" destination="2SH-fs-4Av" id="oA3-5T-flw"/>
-                                    <outlet property="numberLabel" destination="grm-JY-prX" id="s8h-W2-l9E"/>
+                                    <outlet property="siteName" destination="F4n-RX-ObZ" id="Epa-ng-R1l"/>
+                                    <outlet property="siteURL" destination="Q5c-fJ-BsI" id="fPg-ik-TKR"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
                     </tableView>
-                    <navigationItem key="navigationItem" title="サマリー" id="vOB-NW-qU0"/>
+                    <navigationItem key="navigationItem" title="Setting" id="vOB-NW-qU0"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="yMA-HW-ar7" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
@@ -425,11 +424,11 @@
             </objects>
             <point key="canvasLocation" x="70" y="828"/>
         </scene>
-        <!--Summary-->
+        <!--Setting-->
         <scene sceneID="8yb-Ox-H3s">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="8Yb-j4-uGW" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Summary" image="info.circle.fill" catalog="system" id="LfE-6b-Eds"/>
+                    <tabBarItem key="tabBarItem" title="Setting" image="folder.fill" catalog="system" id="LfE-6b-Eds"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="LMv-xN-oqI">
                         <rect key="frame" x="0.0" y="44" width="414" height="44"/>
@@ -515,13 +514,13 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="O1K-AB-W4W"/>
+        <segue reference="T0B-sc-aE5"/>
     </inferredMetricsTieBreakers>
     <resources>
         <image name="chart.pie.fill" catalog="system" width="128" height="124"/>
         <image name="checkmark.seal.fill" catalog="system" width="128" height="122"/>
         <image name="desktopcomputer" catalog="system" width="128" height="101"/>
-        <image name="info.circle.fill" catalog="system" width="128" height="121"/>
+        <image name="folder.fill" catalog="system" width="128" height="95"/>
         <image name="star.fill" width="19" height="18"/>
     </resources>
 </document>

@@ -9,11 +9,8 @@
 import UIKit
 import Charts
 
-protocol MyDelegate{
-     func makeCharts(items:[Item])
-}
 
-class ChartVC: UIViewController,MyDelegate {
+class ChartVC: UIViewController{
     
     @IBOutlet weak var barcht: BarChartView!
     @IBOutlet weak var piecht: PieChartView!
@@ -30,10 +27,12 @@ class ChartVC: UIViewController,MyDelegate {
                         "Safari",
                         "Chrome",
                         "Edge"]
+
     
-    var countList = Array(repeating: 0.0, count: 10)
-    
-    var items = [Item]()
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        download()
+    }
     
     func download(){
         let dispatchGroup = DispatchGroup()
@@ -46,30 +45,14 @@ class ChartVC: UIViewController,MyDelegate {
             dispatchGroup.leave()
         })
         dispatchGroup.notify(queue: .main) {
-            self.items = self.loadItems()
-            self.makeCharts(items: self.items)
+            let items = self.loadItems()
+            self.makeCharts(items: items)
         }
-
-    }
-    
-    func loadItems() -> [Item]{
-        if let data = UserDefaults.standard.data(forKey: "data"){
-            return try! NSKeyedUnarchiver.unarchiveTopLevelObjectWithData(data) as! [Item]
-        }else{
-            let items = [Item]()
-            return items
-        }
-    }
-    
-    func saveItems(data: [Item]){
-        let userDefaults = UserDefaults.standard
-        guard let encodedData = try? NSKeyedArchiver.archivedData(withRootObject: data, requiringSecureCoding: true)else{
-            fatalError()
-        }
-        userDefaults.set(encodedData, forKey: "data")
     }
     
     func makeCharts(items: [Item]) {
+        
+        var countList = Array(repeating: 0.0, count: categoryList.count)
         
         timeLabel.text = "セキュリティニュースの数（"+items.last!.dateString + "~" + items.first!.dateString + ")"
         
@@ -84,11 +67,7 @@ class ChartVC: UIViewController,MyDelegate {
         setBarCht(xLabel: categoryList, yData:countList)
         setPieCht(xLabel: categoryList, yData:countList)
     }
-    
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        download()
-    }
+
     
     func setBarCht(xLabel:[String],yData:[Double]){
         var entry = [ChartDataEntry]()
@@ -210,6 +189,23 @@ class ChartVC: UIViewController,MyDelegate {
         })
         
         return arrangedData
+    }
+    
+    func loadItems() -> [Item]{
+        if let data = UserDefaults.standard.data(forKey: "data"){
+            return try! NSKeyedUnarchiver.unarchiveTopLevelObjectWithData(data) as! [Item]
+        }else{
+            let items = [Item]()
+            return items
+        }
+    }
+    
+    func saveItems(data: [Item]){
+        let userDefaults = UserDefaults.standard
+        guard let encodedData = try? NSKeyedArchiver.archivedData(withRootObject: data, requiringSecureCoding: true)else{
+            fatalError()
+        }
+        userDefaults.set(encodedData, forKey: "data")
     }
     
 }
