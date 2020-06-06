@@ -18,6 +18,8 @@ class ChartVC: UIViewController,MyDelegate {
     @IBOutlet weak var barcht: BarChartView!
     @IBOutlet weak var piecht: PieChartView!
     
+    @IBOutlet weak var timeLabel: UILabel!
+    
     var categoryList = ["Android",
                         "iOS",
                         "Windows",
@@ -43,6 +45,8 @@ class ChartVC: UIViewController,MyDelegate {
     }
     
     func makeCharts(items: [Item]) {
+        
+        timeLabel.text = "セキュリティニュースの数（"+items.last!.dateString + "~" + items.first!.dateString + ")"
         
         for (i,category) in categoryList.enumerated(){
             let filtereditems = items.filter({ item -> Bool in
