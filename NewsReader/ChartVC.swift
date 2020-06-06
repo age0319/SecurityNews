@@ -10,17 +10,13 @@ import UIKit
 import Charts
 
 protocol MyDelegate{
-     func didFetchData(data:[Item])
+     func makeCharts(items:[Item])
 }
 
 class ChartVC: UIViewController,MyDelegate {
     
     @IBOutlet weak var barcht: BarChartView!
     @IBOutlet weak var piecht: PieChartView!
-    
-    
-    let months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun"]
-    let unitsSold = [10.0, 4.0, 6.0, 3.0, 12.0, 16.0]
     
     var categoryList = ["Android",
                         "iOS",
@@ -33,31 +29,52 @@ class ChartVC: UIViewController,MyDelegate {
                         "Chrome",
                         "Edge"]
     
-    var countList = Array(repeating: 0, count: 10)
+    var countList = Array(repeating: 0.0, count: 10)
     
     var items = [Item]()
     
-    func didFetchData(data: [Item]) {
-        print(data.count)
+    func download(){
+        let handler = XMLHandler()
+        handler.downloadPararrel(completion: { returnData in
+            let data = self.sortAndFilter(pureData: returnData!)
+            self.makeCharts(items: data)
+        })
+        
+    }
+    
+    func makeCharts(items: [Item]) {
+        
+        for (i,category) in categoryList.enumerated(){
+            let filtereditems = items.filter({ item -> Bool in
+                item.title.lowercased().contains(category.lowercased())
+            })
+            let numberOfArticle = filtereditems.count
+            countList[i] = Double(numberOfArticle)
+        }
+        
+        setBarCht(xLabel: categoryList, yData:countList)
+        setPieCht(xLabel: categoryList, yData:countList)
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        countArticle()
-        setBarCht(xLabel: months, yData:unitsSold)
-        setPieCht(xLabel: months, yData:unitsSold)
+        download()
     }
     
     func setBarCht(xLabel:[String],yData:[Double]){
         var entry = [ChartDataEntry]()
         
         for (i,d) in yData.enumerated(){
+            if d == 0.0{
+                continue
+            }
             entry.append(BarChartDataEntry(x: Double(i),y: d))
         }
         
-        let dataset = BarChartDataSet(entries: entry,label: "Units Sold")
-        dataset.colors = [UIColor(red: 230/255, green: 126/255, blue: 34/255, alpha: 1)]
+        let dataset = BarChartDataSet(entries: entry)
+        dataset.colors = [.systemBlue]
+        dataset.drawValuesEnabled = false
         
         barcht.data = BarChartData(dataSet: dataset)
         
@@ -65,20 +82,38 @@ class ChartVC: UIViewController,MyDelegate {
         let xaxis = XAxis()
         xaxis.valueFormatter = BarChartFormatter(xlabel: xLabel)
         barcht.xAxis.valueFormatter = xaxis.valueFormatter
+        
+        // Y座標の値が0始まりになるように設定
+        barcht.leftAxis.axisMinimum = 0.0
+        barcht.leftAxis.drawZeroLineEnabled = true
+        barcht.leftAxis.zeroLineColor = .systemGray
+        // ラベルの色を設定
+        barcht.leftAxis.labelTextColor = .systemGray
+        // グリッドの色を設定
+        barcht.leftAxis.gridColor = .systemGray
+        // 軸線は非表示にする
+        barcht.leftAxis.drawAxisLineEnabled = false
 
         // x軸のラベルをボトムに表示
         barcht.xAxis.labelPosition = .bottom
-
-        // グラフの背景色
-        barcht.backgroundColor = UIColor(red: 189/255, green: 195/255, blue: 199/255, alpha: 1)
+        // X軸のラベルの色を設定
+        barcht.xAxis.labelTextColor = .systemGray
+        // X軸の線、グリッドを非表示にする
+        barcht.xAxis.drawGridLinesEnabled = false
+        barcht.xAxis.drawAxisLineEnabled = false
 
         // グラフの棒をニョキッとアニメーションさせる
         barcht.animate(xAxisDuration: 2.0, yAxisDuration: 2.0)
+        
+        // 右側のyラベル表示をなしにする
+        barcht.rightAxis.enabled = false
+        
+        //凡例を消す
+        barcht.legend.enabled = false
+        
     }
     
     public class BarChartFormatter: NSObject, IAxisValueFormatter{
-        // x軸のラベル
-//        var months: [String]! = ["Jan", "Feb", "Mar", "Apr", "May", "Jun"]
         
         var xLabel = [String]()
         
@@ -98,15 +133,18 @@ class ChartVC: UIViewController,MyDelegate {
         
         var dataEntries: [ChartDataEntry] = []
 
-        for i in 0..<xLabel.count {
+        for (i,d) in yData.enumerated() {
+            if d == 0.0{
+                continue
+            }
             dataEntries.append( PieChartDataEntry(value: yData[i], label: xLabel[i], data: yData[i]))
         }
 
-        let pieChartDataSet = PieChartDataSet(entries: dataEntries, label: "Units Sold")
+        let pieChartDataSet = PieChartDataSet(entries: dataEntries, label: "nothig")
 
         var colors: [UIColor] = []
 
-        for _ in 0..<xLabel.count {
+        for _ in dataEntries {
             let red = Double(arc4random_uniform(256))
             let green = Double(arc4random_uniform(256))
             let blue = Double(arc4random_uniform(256))
@@ -119,18 +157,10 @@ class ChartVC: UIViewController,MyDelegate {
         
         piecht.data = PieChartData(dataSet: pieChartDataSet)
         
-        piecht.backgroundColor = UIColor(red: 189/255, green: 195/255, blue: 199/255, alpha: 1)
+        piecht.legend.enabled = false
+        
     }
     
-     func download(){
-        let handler = XMLHandler()
-        handler.downloadPararrel(completion: { returnData in
-        if let returnData = returnData {
-            let data = self.sortAndFilter(pureData: returnData)
-            self.didFetchData(data: data)
-            }
-        })
-    }
      
     func sortAndFilter(pureData:[Item])->[Item]{
         var arrangedData = [Item]()
@@ -152,17 +182,6 @@ class ChartVC: UIViewController,MyDelegate {
         })
         
         return arrangedData
-    }
-        
-    func countArticle(){
-        download()
-        for (i,category) in categoryList.enumerated(){
-            let filtereditems = items.filter({ item -> Bool in
-                item.title.lowercased().contains(category.lowercased())
-            })
-            let numberOfArticle = filtereditems.count
-            countList[i] = numberOfArticle
-        }
     }
     
 }

@@ -24,28 +24,30 @@ class XMLHandler : NSObject,XMLParserDelegate{
                        "https://gigazine.net/news/rss_2.0/"]
     
     func downloadPararrel(completion: @escaping ([Item]?) -> ()){
+        
         for urlString in self.dataSource{
-        
-        print("start fetching",urlString)
-        
-        let req_url = URL(string: urlString)
-        let req = URLRequest(url: req_url!)
-        let session = URLSession(configuration: .default, delegate: nil, delegateQueue: OperationQueue.main)
-
-        let task = session.dataTask(with: req, completionHandler: {
-            (data, response, error) in
-            session.finishTasksAndInvalidate()
-            print("finish",data!.count)
+            print("start fetching",urlString)
             
-            self.parser = XMLParser(data: data!)
-            self.parser.delegate = self
-            self.parser.parse()
-           
-            completion(self.items)
-               })
+            let req_url = URL(string: urlString)
+            let req = URLRequest(url: req_url!)
+            let session = URLSession(configuration: .default, delegate: nil, delegateQueue: OperationQueue.main)
+
+            let task = session.dataTask(with: req, completionHandler: {
+                (data, response, error) in
+                
+                session.finishTasksAndInvalidate()
+                print("finish",data!.count)
+                
+                self.parser = XMLParser(data: data!)
+                self.parser.delegate = self
+                self.parser.parse()
+               
+                completion(self.items)
+                   })
+            
+            task.resume()
+            }
         
-        task.resume()
-        }
     }
     
     func startDownload() -> [Item]{
