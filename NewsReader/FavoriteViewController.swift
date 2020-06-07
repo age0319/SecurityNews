@@ -61,19 +61,5 @@ class FavoriteViewController: UITableViewController{
            }
     }
     
-//    func loadFavs() -> [Item]{
-//        if let data = UserDefaults.standard.data(forKey: "key"){
-//            return try! NSKeyedUnarchiver.unarchiveTopLevelObjectWithData(data) as! [Item]
-//        }else{
-//            let items = [Item]()
-//            return items
-//        }
-//    }
-//
-//    func trashFavs(){
-//        UserDefaults.standard.removeObject(forKey: "key")
-//        items = []
-//        tableView.reloadData()
-//    }
 }
 

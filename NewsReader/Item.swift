@@ -78,24 +78,10 @@ class Item:NSObject, NSSecureCoding{
     }
     
     func check_source(){
-        if self.link.contains("security-next.com"){
-            self.source = "SecurityNext"
-        }else if(self.link.contains("trendmicro")){
-            self.source = "TrendMicro"
-        }else if(self.link.contains("itmedia.co.jp")){
-            self.source = "ITMedia"
-        }else if(self.link.contains("ccsi")){
-            self.source = "CCSI"
-        }else if(self.link.contains("ipa.go.jp")){
-            self.source = "IPA"
-        }else if(self.link.contains("scan.netsecurity.ne.jp")){
-            self.source = "ScanNetSecurity"
-        }else if(self.link.contains("www.lac.co.jp")){
-            self.source = "LAC"
-        }else if(self.link.contains("techcrunch.com")){
-            self.source = "TechCrunch"
-        }else if(self.link.contains("gigazine.net")){
-            self.source = "Gigazine"
+        for (name,_,domain) in CommonSetting().dataSource{
+            if self.link.contains(domain){
+                self.source = name
+            }
         }
     }
 

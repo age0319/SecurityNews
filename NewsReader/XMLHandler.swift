@@ -19,13 +19,13 @@ class XMLHandler : NSObject,XMLParserDelegate{
         
         let dispatchGroup = DispatchGroup()
             
-        for (_,value) in CommonSetting().sourceDict{
+        for (_,siteurl,_) in CommonSetting().dataSource{
             
-            print("start fetching",value)
+            print("start fetching",siteurl)
             
             dispatchGroup.enter()
             
-            let req_url = URL(string: value)
+            let req_url = URL(string: siteurl)
             let req = URLRequest(url: req_url!)
             let session = URLSession(configuration: .default, delegate: nil, delegateQueue: OperationQueue.main)
 

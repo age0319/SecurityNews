@@ -19,16 +19,34 @@ class SettingCell: UITableViewCell {
 
 class SettingVC: UITableViewController{
     
+    var dataSource = CommonSetting().dataSource
+
+    override func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
+        let delete = deleteAction(at: indexPath)
+        return UISwipeActionsConfiguration(actions: [delete])
+    }
+    
+    func deleteAction(at indexPath:IndexPath) -> UIContextualAction{
+        let action = UIContextualAction(style: .destructive, title: "Delete", handler: {(action, view,completion) in
+            self.dataSource.remove(at: indexPath.row)
+            self.tableView.deleteRows(at: [indexPath], with: .automatic)
+            completion(true)
+        })
+        
+        action.backgroundColor = .red
+        
+        return action
+    }
+    
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return CommonSetting().tpl.count
+        return dataSource.count
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "SettingCell", for: indexPath) as! SettingCell
-        let tpl = CommonSetting().tpl
         
-        cell.siteName.text = tpl[indexPath.row].0
-        cell.siteURL.text = tpl[indexPath.row].1
+        cell.siteName.text = dataSource[indexPath.row].0
+        cell.siteURL.text = dataSource[indexPath.row].1
         
         return cell
     }
