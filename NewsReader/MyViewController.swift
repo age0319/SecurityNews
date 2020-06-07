@@ -23,7 +23,7 @@ class MyViewController: UITableViewController, ArticleCellDelegate,UISearchBarDe
     }
     
     @IBAction func showActivityViewController(_ sender: Any) {
-        let favs = loadFavs()
+        let favs = CommonSetting().loadItems(key: "fav")
         var links = [String]()
         
         for i in favs{
@@ -104,7 +104,7 @@ class MyViewController: UITableViewController, ArticleCellDelegate,UISearchBarDe
         setupSearchBar()
         table.refreshControl = myRefreshControl
         myRefreshControl.addTarget(self, action: #selector(refresh(sender:)), for: .valueChanged)
-        items = loadItems()
+        items = CommonSetting().loadItems(key:"article")
         currentItems = self.items
     }
     
@@ -124,34 +124,12 @@ class MyViewController: UITableViewController, ArticleCellDelegate,UISearchBarDe
         let handler = XMLHandler()
         handler.downloadPararrel(completion: { returnData in
             if let returnData = returnData {
-                self.items = self.sortAndFilter(pureData: returnData)
+                self.items = returnData
                 self.currentItems = self.items
                 self.updateFavs()
                 self.table.reloadData()
            }
         })
-    }
-    
-    func sortAndFilter(pureData:[Item])->[Item]{
-        var arrangedData = [Item]()
-        
-        arrangedData = pureData.sorted(by: {
-            $0.date.compare($1.date) == .orderedDescending
-        })
-        
-        arrangedData = arrangedData.filter({ item -> Bool in
-            !item.title.contains("最新記事一覧")
-        })
-        
-       arrangedData = arrangedData.filter({ item -> Bool in
-            if item.source.contains("Gigazine"){
-                return item.subject.contains("セキュリティ")
-            }else{
-                return true
-            }
-        })
-        
-        return arrangedData
     }
     
     
@@ -168,19 +146,10 @@ class MyViewController: UITableViewController, ArticleCellDelegate,UISearchBarDe
             controller.link = item.link
         }
     }
-    
-    func loadItems() -> [Item]{
-        if let data = UserDefaults.standard.data(forKey: "data"){
-            return try! NSKeyedUnarchiver.unarchiveTopLevelObjectWithData(data) as! [Item]
-        }else{
-            let items = [Item]()
-            return items
-        }
-    }
 
     func updateFavs(){
            
-       let favs = loadFavs()
+        let favs = CommonSetting().loadItems(key: "fav")
         
         if favs.isEmpty {
             self.items.forEach { $0.isFavorite = false }
@@ -193,14 +162,5 @@ class MyViewController: UITableViewController, ArticleCellDelegate,UISearchBarDe
         }
         
        return
-    }
-       
-    func loadFavs() -> [Item]{
-        if let data = UserDefaults.standard.data(forKey: "key"){
-            return try! NSKeyedUnarchiver.unarchiveTopLevelObjectWithData(data) as! [Item]
-        }else{
-            let items = [Item]()
-            return items
-        }
     }
 }

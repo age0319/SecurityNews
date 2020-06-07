@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		49183BDE248C630300C7F2FA /* settings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49183BDD248C630300C7F2FA /* settings.swift */; };
 		49474AC62488C76E002858D0 /* SummaryVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49474AC52488C76E002858D0 /* SummaryVC.swift */; };
 		49474AC82489C558002858D0 /* ChartVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49474AC72489C558002858D0 /* ChartVC.swift */; };
 		4997DC93247FAE0B00560099 /* FavoriteViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4997DC92247FAE0B00560099 /* FavoriteViewController.swift */; };
@@ -27,6 +28,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		49183BDD248C630300C7F2FA /* settings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = settings.swift; sourceTree = "<group>"; };
 		49474AC52488C76E002858D0 /* SummaryVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SummaryVC.swift; sourceTree = "<group>"; };
 		49474AC72489C558002858D0 /* ChartVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChartVC.swift; sourceTree = "<group>"; };
 		4997DC92247FAE0B00560099 /* FavoriteViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteViewController.swift; sourceTree = "<group>"; };
@@ -93,6 +95,7 @@
 		B19EBD40247349BE00DB7AB4 /* NewsReader */ = {
 			isa = PBXGroup;
 			children = (
+				49183BDD248C630300C7F2FA /* settings.swift */,
 				B19EBD41247349BE00DB7AB4 /* AppDelegate.swift */,
 				B19EBD43247349BE00DB7AB4 /* SceneDelegate.swift */,
 				B19EBD47247349BE00DB7AB4 /* Main.storyboard */,
@@ -240,6 +243,7 @@
 				B19EBD5A2473C44F00DB7AB4 /* Item.swift in Sources */,
 				B19EBD42247349BE00DB7AB4 /* AppDelegate.swift in Sources */,
 				B19EBD5F24749F7B00DB7AB4 /* DetailViewController.swift in Sources */,
+				49183BDE248C630300C7F2FA /* settings.swift in Sources */,
 				49474AC82489C558002858D0 /* ChartVC.swift in Sources */,
 				B14E495B247E3CD4002635ED /* MyTableViewCell.swift in Sources */,
 				B14E4957247AA0BC002635ED /* XMLHandler.swift in Sources */,

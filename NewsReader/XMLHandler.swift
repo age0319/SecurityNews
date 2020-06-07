@@ -13,27 +13,19 @@ class XMLHandler : NSObject,XMLParserDelegate{
     var items = [Item]()
     var item:Item?
     var currentstring = ""
-    let dataSource = ["http://www.security-next.com/feed",
-                       "http://feeds.trendmicro.com/TM-Securityblog/",
-                       "https://rss.itmedia.co.jp/rss/2.0/news_security.xml",
-                       "https://ccsi.jp/category/%E3%82%BB%E3%82%AD%E3%83%A5%E3%83%AA%E3%83%86%E3%82%A3%E3%83%8B%E3%83%A5%E3%83%BC%E3%82%B9/feed/",
-                       "https://www.ipa.go.jp/security/rss/info.rdf",
-                       "https://scan.netsecurity.ne.jp/rss/index.rdf",
-                       "https://www.lac.co.jp/lacwatch/feed.xml",
-                       "https://jp.techcrunch.com/news/security/feed/",
-                       "https://gigazine.net/news/rss_2.0/"]
+    
     
     func downloadPararrel(completion: @escaping ([Item]?) -> ()){
         
         let dispatchGroup = DispatchGroup()
-        
-        for urlString in self.dataSource{
-
-            print("start fetching",urlString)
+            
+        for (_,value) in CommonSetting().sourceDict{
+            
+            print("start fetching",value)
             
             dispatchGroup.enter()
             
-            let req_url = URL(string: urlString)
+            let req_url = URL(string: value)
             let req = URLRequest(url: req_url!)
             let session = URLSession(configuration: .default, delegate: nil, delegateQueue: OperationQueue.main)
 
@@ -52,40 +44,25 @@ class XMLHandler : NSObject,XMLParserDelegate{
             task.resume()
             }
         dispatchGroup.notify(queue: .main){
+    
+            self.items = self.items.filter({ item -> Bool in
+                !item.title.contains("最新記事一覧")
+            })
+             
+            self.items = self.items.filter({ item -> Bool in
+                if item.source.contains("Gigazine"){
+                    return item.subject.contains("セキュリティ")
+                }else{
+                    return true
+                }
+             })
+            
+            self.items = self.items.sorted(by: {
+                     $0.date.compare($1.date) == .orderedDescending
+             })
+            
             completion(self.items)
         }
-    }
-    
-    func startDownload() -> [Item]{
-        self.items = []
-        
-        for url in self.dataSource {
-            if let url = URL(string: url){
-                if let parser = XMLParser(contentsOf: url){
-                    self.parser = parser
-                    self.parser.delegate = self
-                    self.parser.parse()
-                }
-            }
-        }
-        
-        self.items = self.items.sorted(by: {
-            $0.date.compare($1.date) == .orderedDescending
-        })
-        
-        self.items = self.items.filter({ item -> Bool in
-            !item.title.contains("最新記事一覧")
-        })
-        
-        self.items = self.items.filter({ item -> Bool in
-            if item.source.contains("Gigazine"){
-                return item.subject.contains("セキュリティ")
-            }else{
-                return true
-            }
-        })
-        
-        return self.items
     }
         
     func parser(_ parser: XMLParser, didStartElement elementName: String, namespaceURI: String?, qualifiedName qName: String?, attributes attributeDict: [String : String] = [:]) {

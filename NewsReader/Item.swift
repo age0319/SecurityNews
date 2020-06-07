@@ -18,6 +18,7 @@ class Item:NSObject, NSSecureCoding{
     var date = Date()
     var source = ""
     var isFavorite = Bool()
+    
     //gigazineのカテゴリー
     var subject = ""
     override init() {

@@ -30,7 +30,9 @@ class FavoriteViewController: UITableViewController{
     
     
     @IBAction func onTrash(_ sender: Any) {
-        trashFavs()
+        CommonSetting().trashItems(key: "fav")
+        items = []
+        tableView.reloadData()
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -46,7 +48,7 @@ class FavoriteViewController: UITableViewController{
         
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(false)
-        items = loadFavs()
+        items = CommonSetting().loadItems(key: "fav")
         tableView.reloadData()
     }
         
@@ -59,19 +61,19 @@ class FavoriteViewController: UITableViewController{
            }
     }
     
-    func loadFavs() -> [Item]{
-        if let data = UserDefaults.standard.data(forKey: "key"){
-            return try! NSKeyedUnarchiver.unarchiveTopLevelObjectWithData(data) as! [Item]
-        }else{
-            let items = [Item]()
-            return items
-        }
-    }
-    
-    func trashFavs(){
-        UserDefaults.standard.removeObject(forKey: "key")
-        items = []
-        tableView.reloadData()
-    }
+//    func loadFavs() -> [Item]{
+//        if let data = UserDefaults.standard.data(forKey: "key"){
+//            return try! NSKeyedUnarchiver.unarchiveTopLevelObjectWithData(data) as! [Item]
+//        }else{
+//            let items = [Item]()
+//            return items
+//        }
+//    }
+//
+//    func trashFavs(){
+//        UserDefaults.standard.removeObject(forKey: "key")
+//        items = []
+//        tableView.reloadData()
+//    }
 }
 

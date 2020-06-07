@@ -40,12 +40,12 @@ class ChartVC: UIViewController{
         
         dispatchGroup.enter()
         handler.downloadPararrel(completion: { returnData in
-            let data = self.sortAndFilter(pureData: returnData!)
-            self.saveItems(data: data)
+            let data = returnData!
+            CommonSetting().saveItems(items: data, key: "article")
             dispatchGroup.leave()
         })
         dispatchGroup.notify(queue: .main) {
-            let items = self.loadItems()
+            let items = CommonSetting().loadItems(key: "article")
             self.makeCharts(items: items)
         }
     }
@@ -166,46 +166,6 @@ class ChartVC: UIViewController{
         
         piecht.legend.enabled = false
         
-    }
-    
-     
-    func sortAndFilter(pureData:[Item])->[Item]{
-        var arrangedData = [Item]()
-            
-        arrangedData = pureData.sorted(by: {
-            $0.date.compare($1.date) == .orderedDescending
-        })
-        
-        arrangedData = arrangedData.filter({ item -> Bool in
-            !item.title.contains("最新記事一覧")
-        })
-        
-       arrangedData = arrangedData.filter({ item -> Bool in
-            if item.source.contains("Gigazine"){
-                return item.subject.contains("セキュリティ")
-            }else{
-                return true
-            }
-        })
-        
-        return arrangedData
-    }
-    
-    func loadItems() -> [Item]{
-        if let data = UserDefaults.standard.data(forKey: "data"){
-            return try! NSKeyedUnarchiver.unarchiveTopLevelObjectWithData(data) as! [Item]
-        }else{
-            let items = [Item]()
-            return items
-        }
-    }
-    
-    func saveItems(data: [Item]){
-        let userDefaults = UserDefaults.standard
-        guard let encodedData = try? NSKeyedArchiver.archivedData(withRootObject: data, requiringSecureCoding: true)else{
-            fatalError()
-        }
-        userDefaults.set(encodedData, forKey: "data")
     }
     
 }

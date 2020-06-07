@@ -36,7 +36,7 @@ class MyTableViewCell: UITableViewCell {
         
         self.item.isFavorite = !self.item.isFavorite
         
-        var items = loadFavs()
+        var items = CommonSetting().loadItems(key: "fav")
         
         if self.item.isFavorite{
             items.append(self.item)
@@ -46,26 +46,10 @@ class MyTableViewCell: UITableViewCell {
             })
         }
         
-        saveFavs(fav: items)
+        CommonSetting().saveItems(items: items, key: "fav")
         
         delegte?.reloadCell(index: index)
         
     }
     
-    func loadFavs() -> [Item]{
-        if let data = UserDefaults.standard.data(forKey: "key"){
-            return try! NSKeyedUnarchiver.unarchiveTopLevelObjectWithData(data) as! [Item]
-        }else{
-            let items = [Item]()
-            return items
-        }
-    }
-    
-    func saveFavs(fav: [Item]){
-        let userDefaults = UserDefaults.standard
-        guard let encodedData = try? NSKeyedArchiver.archivedData(withRootObject: fav, requiringSecureCoding: true)else{
-            fatalError()
-        }
-        userDefaults.set(encodedData, forKey: "key")
-    }
 }
