@@ -105,7 +105,7 @@ class MyViewController: UITableViewController, ArticleCellDelegate,UISearchBarDe
         table.refreshControl = myRefreshControl
         myRefreshControl.addTarget(self, action: #selector(refresh(sender:)), for: .valueChanged)
         items = CommonSetting().loadItems(key:"article")
-        currentItems = self.items
+        currentItems = items
     }
     
     override func viewDidAppear(_ animated: Bool) {

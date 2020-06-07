@@ -19,16 +19,18 @@ class SettingCell: UITableViewCell {
 
 class SettingVC: UITableViewController{
     
-    
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 3
+        return CommonSetting().tpl.count
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-            let cell = tableView.dequeueReusableCell(withIdentifier: "SettingCell", for: indexPath) as! SettingCell
-           
-            return cell
-       }
+        let cell = tableView.dequeueReusableCell(withIdentifier: "SettingCell", for: indexPath) as! SettingCell
+        let tpl = CommonSetting().tpl
+        
+        cell.siteName.text = tpl[indexPath.row].0
+        cell.siteURL.text = tpl[indexPath.row].1
+        
+        return cell
+    }
     
-
 }
