@@ -78,7 +78,7 @@ class Item:NSObject, NSSecureCoding{
     }
     
     func check_source(){
-        for (name,_,domain) in CommonSetting().dataSource{
+        for (name,_,domain) in CommonSetting().xmlSource{
             if self.link.contains(domain){
                 self.source = name
             }

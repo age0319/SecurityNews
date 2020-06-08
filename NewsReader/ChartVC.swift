@@ -55,17 +55,17 @@ class ChartVC: UIViewController{
     
     func makeCharts(items: [Item]) {
         
-        var countList = Array(repeating: 0.0, count: categoryList.count)
+        var countList = Array(repeating: 10.0, count: categoryList.count)
         
-        timeLabel.text = "セキュリティニュースの数（"+items.last!.dateString + "~" + items.first!.dateString + ")"
+        timeLabel.text = "今日のセキュリティニュース（???)"
         
-        for (i,category) in categoryList.enumerated(){
-            let filtereditems = items.filter({ item -> Bool in
-                item.title.lowercased().contains(category.lowercased())
-            })
-            let numberOfArticle = filtereditems.count
-            countList[i] = Double(numberOfArticle)
-        }
+//        for (i,category) in categoryList.enumerated(){
+//            let filtereditems = items.filter({ item -> Bool in
+//                item.title.lowercased().contains(category.lowercased())
+//            })
+//            let numberOfArticle = filtereditems.count
+//            countList[i] = Double(numberOfArticle)
+//        }
         
         setBarCht(xLabel: categoryList, yData:countList)
         setPieCht(xLabel: categoryList, yData:countList)

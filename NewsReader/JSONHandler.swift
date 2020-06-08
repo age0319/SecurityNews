@@ -45,10 +45,9 @@ class JSONHandler {
         return
     }
     
-    let urlString = "https://newsapi.org/v2/top-headlines?country=jp&category=technology&apiKey=9947436f9ee74ff2a49a3c7b8f60226e"
 
     func download(completion: @escaping ([Item]?) -> ()) {
-        
+        let urlString = CommonSetting().jsonSource
         let req_url = URL(string: urlString)
         let req = URLRequest(url: req_url!)
         let session = URLSession(configuration: .default, delegate: nil, delegateQueue: OperationQueue.main)

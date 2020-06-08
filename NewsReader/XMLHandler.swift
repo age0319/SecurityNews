@@ -14,19 +14,34 @@ class XMLHandler : NSObject,XMLParserDelegate{
     var item:Item?
     var currentstring = ""
     
+    func updateFavs(){
+       let favs = CommonSetting().loadItems(key: "fav")
+       
+       if favs.isEmpty {
+           self.items.forEach { $0.isFavorite = false }
+       }else{
+          for i in favs{
+              if let offset = self.items.firstIndex(where: {$0.title == i.title}) {
+                  self.items[offset].isFavorite = true
+              }
+          }
+       }
+       
+      return
+    }
     
     func downloadPararrel(completion: @escaping ([Item]?) -> ()){
         
         let dispatchGroup = DispatchGroup()
-        let urls = CommonSetting().loadSourceArray(key: "source")
+        let sources = CommonSetting().loadSourceArray(key: "source")
         
-        for url in urls{
+        for source in sources{
             
-            print("start fetching",url.url)
+            print("start fetching",source.url)
             
             dispatchGroup.enter()
             
-            let req_url = URL(string: url.url)
+            let req_url = URL(string: source.url)
             let req = URLRequest(url: req_url!)
             let session = URLSession(configuration: .default, delegate: nil, delegateQueue: OperationQueue.main)
 
@@ -41,9 +56,9 @@ class XMLHandler : NSObject,XMLParserDelegate{
                
                 dispatchGroup.leave()
                    })
-            
             task.resume()
             }
+        
         dispatchGroup.notify(queue: .main){
     
             self.items = self.items.filter({ item -> Bool in
@@ -65,25 +80,8 @@ class XMLHandler : NSObject,XMLParserDelegate{
             self.updateFavs()
             
             completion(self.items)
+            }
         }
-    }
-    
-    func updateFavs(){
-              
-           let favs = CommonSetting().loadItems(key: "fav")
-           
-           if favs.isEmpty {
-               self.items.forEach { $0.isFavorite = false }
-           }else{
-              for i in favs{
-                  if let offset = self.items.firstIndex(where: {$0.title == i.title}) {
-                      self.items[offset].isFavorite = true
-                  }
-              }
-           }
-           
-          return
-       }
         
     func parser(_ parser: XMLParser, didStartElement elementName: String, namespaceURI: String?, qualifiedName qName: String?, attributes attributeDict: [String : String] = [:]) {
         self.currentstring = ""
@@ -121,5 +119,4 @@ class XMLHandler : NSObject,XMLParserDelegate{
     func parserDidEndDocument(_ parser: XMLParser) {
     
     }
-    
 }

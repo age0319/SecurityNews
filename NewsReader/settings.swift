@@ -10,10 +10,11 @@ import Foundation
 
 class CommonSetting {
     
-    var dataSource = [(String,String,String)]()
+    var xmlSource = [(String,String,String)]()
+    var jsonSource = String()
     
     init() {
-        self.dataSource = [
+        self.xmlSource = [
             ("SecurityNext","http://www.security-next.com/feed","security-next.com"),
             ("TrendMicro","http://feeds.trendmicro.com/TM-Securityblog/","trendmicro"),
             ("CCSI","https://ccsi.jp/category/%E3%82%BB%E3%82%AD%E3%83%A5%E3%83%AA%E3%83%86%E3%82%A3%E3%83%8B%E3%83%A5%E3%83%BC%E3%82%B9/feed/","ccsi.jp"),
@@ -24,6 +25,8 @@ class CommonSetting {
             ("Gigazine","https://gigazine.net/news/rss_2.0/","gigazine.net"),
             ("ITMedia","https://rss.itmedia.co.jp/rss/2.0/news_security.xml","itmedia.co.jp")
             ]
+        
+        self.jsonSource = "https://newsapi.org/v2/top-headlines?country=jp&category=technology&apiKey=9947436f9ee74ff2a49a3c7b8f60226e"
         }
     
     func loadSourceArray(key:String) -> [Source]{
@@ -36,7 +39,7 @@ class CommonSetting {
     
     func setDefaultSetting() -> [Source]{
         var sourceArray = [Source]()
-        for i in self.dataSource{
+        for i in self.xmlSource{
             let source = Source()
             source.setData(name: i.0, url: i.1, id: i.2)
             sourceArray.append(source)
