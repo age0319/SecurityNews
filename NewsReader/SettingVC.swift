@@ -27,7 +27,7 @@ class SettingVC: UITableViewController{
         tableView.reloadData()
     }
     
-    override func viewDidAppear(_ animated: Bool) {
+    override func viewDidLoad() {
         dataSource = CommonSetting().loadSourceArray(key: "source")
         tableView.reloadData()
     }

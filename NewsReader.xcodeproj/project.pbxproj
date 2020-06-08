@@ -29,6 +29,7 @@
 
 /* Begin PBXFileReference section */
 		49183BDD248C630300C7F2FA /* settings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = settings.swift; sourceTree = "<group>"; };
+		49183BDF248EEFDC00C7F2FA /* MyPlayground.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; path = MyPlayground.playground; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		49474AC52488C76E002858D0 /* SettingVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingVC.swift; sourceTree = "<group>"; };
 		49474AC72489C558002858D0 /* ChartVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChartVC.swift; sourceTree = "<group>"; };
 		4997DC92247FAE0B00560099 /* FavoriteViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteViewController.swift; sourceTree = "<group>"; };
@@ -111,6 +112,7 @@
 				4997DC96248675E900560099 /* TechVC.swift */,
 				4997DC982486771700560099 /* JSONHandler.swift */,
 				49474AC52488C76E002858D0 /* SettingVC.swift */,
+				49183BDF248EEFDC00C7F2FA /* MyPlayground.playground */,
 				49474AC72489C558002858D0 /* ChartVC.swift */,
 			);
 			path = NewsReader;
