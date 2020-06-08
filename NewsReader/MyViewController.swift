@@ -89,14 +89,8 @@ class MyViewController: UITableViewController, ArticleCellDelegate,UISearchBarDe
     override func viewDidLoad() {
         super.viewDidLoad()
         setupSearchBar()
+        download()
     }
-    
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
-        self.items = CommonSetting().loadItems(key: "secArt")
-        self.currentItems = self.items
-        tableView.reloadData()
-        }
     
     @IBAction func onRefresh(_ sender: Any) {
         download()

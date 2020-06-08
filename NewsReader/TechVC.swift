@@ -92,10 +92,6 @@ class TechVC: UITableViewController, ArticleCellDelegate,UISearchBarDelegate{
     override func viewDidLoad() {
         super.viewDidLoad()
         setupSearchBar()
-    }
-
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
         download()
     }
         

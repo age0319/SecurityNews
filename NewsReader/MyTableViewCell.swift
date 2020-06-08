@@ -36,17 +36,17 @@ class MyTableViewCell: UITableViewCell {
         
         self.item.isFavorite = !self.item.isFavorite
         
-        var items = CommonSetting().loadItems(key: "fav")
+        var favs = CommonSetting().loadItems(key: "fav")
         
         if self.item.isFavorite{
-            items.append(self.item)
+            favs.append(self.item)
         }else{
-            items = items.filter({ item -> Bool in
+            favs = favs.filter({ item -> Bool in
                 !item.title.contains(self.item.title)
             })
         }
         
-        CommonSetting().saveItems(items: items, key: "fav")
+        CommonSetting().saveItems(items: favs, key: "fav")
         
         delegte?.reloadCell(index: index)
         

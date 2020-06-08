@@ -57,7 +57,11 @@ class ChartVC: UIViewController{
         
         var countList = Array(repeating: 10.0, count: categoryList.count)
         
-        timeLabel.text = "今日のセキュリティニュース（???)"
+        let date = Date()
+        let formatter = DateFormatter()
+        formatter.dateFormat = "yyyy/MM/dd"
+        
+        timeLabel.text = "今日のセキュリティニュース" + "(" + formatter.string(from: date) + ")"
         
 //        for (i,category) in categoryList.enumerated(){
 //            let filtereditems = items.filter({ item -> Bool in

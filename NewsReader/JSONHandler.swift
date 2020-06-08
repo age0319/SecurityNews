@@ -52,9 +52,11 @@ class JSONHandler {
         let req = URLRequest(url: req_url!)
         let session = URLSession(configuration: .default, delegate: nil, delegateQueue: OperationQueue.main)
 
+        print("start fetching", urlString)
         let task = session.dataTask(with: req, completionHandler: {
            (data, response, error) in
             session.finishTasksAndInvalidate()
+            print("finish",data!.count)
             self.items.removeAll()
             do{
                 let decode = JSONDecoder()
