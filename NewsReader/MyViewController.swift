@@ -14,24 +14,11 @@ class MyViewController: UITableViewController, ArticleCellDelegate,UISearchBarDe
     @IBOutlet var table: UITableView!
     @IBOutlet weak var search: UISearchBar!
     
-    let myRefreshControl = UIRefreshControl()
     var items = [Item]()
     var currentItems = [Item]()
     
     func setupSearchBar(){
         search.delegate = self
-    }
-    
-    @IBAction func showActivityViewController(_ sender: Any) {
-        let favs = CommonSetting().loadItems(key: "fav")
-        var links = [String]()
-        
-        for i in favs{
-            links.append(i.getLink())
-        }
-        
-        let controller = UIActivityViewController(activityItems:links ,applicationActivities: nil)
-        self.present(controller, animated: true, completion: nil)
     }
     
     func searchBar(_ searchBar: UISearchBar, selectedScopeButtonIndexDidChange selectedScope: Int) {
@@ -102,34 +89,34 @@ class MyViewController: UITableViewController, ArticleCellDelegate,UISearchBarDe
     override func viewDidLoad() {
         super.viewDidLoad()
         setupSearchBar()
-        table.refreshControl = myRefreshControl
-        myRefreshControl.addTarget(self, action: #selector(refresh(sender:)), for: .valueChanged)
-        items = CommonSetting().loadItems(key:"article")
-        currentItems = items
     }
     
     override func viewDidAppear(_ animated: Bool) {
-           super.viewDidAppear(animated)
-           updateFavs()
-           table.reloadData()
-       }
+        super.viewDidAppear(animated)
+        self.items = CommonSetting().loadItems(key: "secArt")
+        self.currentItems = self.items
+        tableView.reloadData()
+        }
     
-    @objc private func refresh(sender: UIRefreshControl){
-        search.selectedScopeButtonIndex = 0;
-        downloadAndReload()
-        sender.endRefreshing()
+    @IBAction func onRefresh(_ sender: Any) {
+        download()
     }
     
-    func downloadAndReload(){
+    func download(){
+        let dispatchGroup = DispatchGroup()
         let handler = XMLHandler()
+
+        dispatchGroup.enter()
         handler.downloadPararrel(completion: { returnData in
-            if let returnData = returnData {
-                self.items = returnData
-                self.currentItems = self.items
-                self.updateFavs()
-                self.table.reloadData()
-           }
+          let data = returnData!
+          CommonSetting().saveItems(items: data, key: "secArt")
+          dispatchGroup.leave()
         })
+        dispatchGroup.notify(queue: .main) {
+            self.items = CommonSetting().loadItems(key: "secArt")
+            self.currentItems = self.items
+            self.tableView.reloadData()
+        }
     }
     
     
@@ -145,22 +132,5 @@ class MyViewController: UITableViewController, ArticleCellDelegate,UISearchBarDe
             controller.title = item.title
             controller.link = item.link
         }
-    }
-
-    func updateFavs(){
-           
-        let favs = CommonSetting().loadItems(key: "fav")
-        
-        if favs.isEmpty {
-            self.items.forEach { $0.isFavorite = false }
-        }else{
-           for i in favs{
-               if let offset = self.items.firstIndex(where: {$0.title == i.title}) {
-                   self.items[offset].isFavorite = true
-               }
-           }
-        }
-        
-       return
     }
 }

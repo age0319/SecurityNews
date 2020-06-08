@@ -19,8 +19,13 @@ class SettingCell: UITableViewCell {
 
 class SettingVC: UITableViewController{
     
-    var dataSource = CommonSetting().dataSource
-
+    var dataSource = [Source]()
+    
+    override func viewDidAppear(_ animated: Bool) {
+        dataSource = CommonSetting().loadSourceArray(key: "source")
+        tableView.reloadData()
+    }
+    
     override func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
         let delete = deleteAction(at: indexPath)
         return UISwipeActionsConfiguration(actions: [delete])
@@ -29,11 +34,13 @@ class SettingVC: UITableViewController{
     func deleteAction(at indexPath:IndexPath) -> UIContextualAction{
         let action = UIContextualAction(style: .destructive, title: "Delete", handler: {(action, view,completion) in
             self.dataSource.remove(at: indexPath.row)
+            CommonSetting().saveSourceArray(obj: self.dataSource, key: "source")
             self.tableView.deleteRows(at: [indexPath], with: .automatic)
             completion(true)
         })
         
         action.backgroundColor = .red
+        action.image = UIImage(systemName: "trash")
         
         return action
     }
@@ -45,9 +52,8 @@ class SettingVC: UITableViewController{
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "SettingCell", for: indexPath) as! SettingCell
         
-        cell.siteName.text = dataSource[indexPath.row].0
-        cell.siteURL.text = dataSource[indexPath.row].1
-        
+        cell.siteName.text = dataSource[indexPath.row].name
+        cell.siteURL.text = dataSource[indexPath.row].url
         return cell
     }
     

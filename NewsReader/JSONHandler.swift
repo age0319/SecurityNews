@@ -10,6 +10,8 @@ import Foundation
 
 class JSONHandler {
     
+    var items = [Item]()
+    
     struct Source: Codable{
         let id:String?
         let name:String?
@@ -26,13 +28,27 @@ class JSONHandler {
     struct ResultJson: Codable{
         let articles:[Article]?
     }
-        
+    
+    func updateFavs(){
+              
+       let favs = CommonSetting().loadItems(key: "fav")
+       
+       if favs.isEmpty {
+           self.items.forEach { $0.isFavorite = false }
+       }else{
+          for i in favs{
+              if let offset = self.items.firstIndex(where: {$0.title == i.title}) {
+                  self.items[offset].isFavorite = true
+              }
+          }
+       }
+        return
+    }
     
     let urlString = "https://newsapi.org/v2/top-headlines?country=jp&category=technology&apiKey=9947436f9ee74ff2a49a3c7b8f60226e"
 
     func download(completion: @escaping ([Item]?) -> ()) {
         
-        var items = [Item]()
         let req_url = URL(string: urlString)
         let req = URLRequest(url: req_url!)
         let session = URLSession(configuration: .default, delegate: nil, delegateQueue: OperationQueue.main)
@@ -40,7 +56,7 @@ class JSONHandler {
         let task = session.dataTask(with: req, completionHandler: {
            (data, response, error) in
             session.finishTasksAndInvalidate()
-            items.removeAll()
+            self.items.removeAll()
             do{
                 let decode = JSONDecoder()
                 let json = try decode.decode(ResultJson.self, from: data!)
@@ -53,9 +69,10 @@ class JSONHandler {
                     item.source = article.source!.name!
                     item.convert_dcdate_date(currentString: article.publishedAt!)
                     item.convert_date_to_string()
-                    items.append(item)
-                completion(items)
+                    self.items.append(item)
                 }
+                self.updateFavs()
+                completion(self.items)
            }catch{
                 print("error happened")
                 completion(nil)
@@ -64,5 +81,6 @@ class JSONHandler {
         })
 
         task.resume()
+    
     }
 }

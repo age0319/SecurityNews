@@ -18,14 +18,15 @@ class XMLHandler : NSObject,XMLParserDelegate{
     func downloadPararrel(completion: @escaping ([Item]?) -> ()){
         
         let dispatchGroup = DispatchGroup()
+        let urls = CommonSetting().loadSourceArray(key: "source")
+        
+        for url in urls{
             
-        for (_,siteurl,_) in CommonSetting().dataSource{
-            
-            print("start fetching",siteurl)
+            print("start fetching",url.url)
             
             dispatchGroup.enter()
             
-            let req_url = URL(string: siteurl)
+            let req_url = URL(string: url.url)
             let req = URLRequest(url: req_url!)
             let session = URLSession(configuration: .default, delegate: nil, delegateQueue: OperationQueue.main)
 
@@ -61,9 +62,28 @@ class XMLHandler : NSObject,XMLParserDelegate{
                      $0.date.compare($1.date) == .orderedDescending
              })
             
+            self.updateFavs()
+            
             completion(self.items)
         }
     }
+    
+    func updateFavs(){
+              
+           let favs = CommonSetting().loadItems(key: "fav")
+           
+           if favs.isEmpty {
+               self.items.forEach { $0.isFavorite = false }
+           }else{
+              for i in favs{
+                  if let offset = self.items.firstIndex(where: {$0.title == i.title}) {
+                      self.items[offset].isFavorite = true
+                  }
+              }
+           }
+           
+          return
+       }
         
     func parser(_ parser: XMLParser, didStartElement elementName: String, namespaceURI: String?, qualifiedName qName: String?, attributes attributeDict: [String : String] = [:]) {
         self.currentstring = ""

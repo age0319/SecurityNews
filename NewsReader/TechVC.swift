@@ -89,38 +89,30 @@ class TechVC: UITableViewController, ArticleCellDelegate,UISearchBarDelegate{
         return cell
     }
     
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
-        updateFavs()
-        table.reloadData()
-    }
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         setupSearchBar()
-        spinner.startAnimating()
-        downloadAndReload()
-        spinner.stopAnimating()
-        table.refreshControl = myRefreshControl
-        myRefreshControl.addTarget(self, action: #selector(refresh(sender:)), for: .valueChanged)
     }
-    
-    @objc private func refresh(sender: UIRefreshControl){
-        self.search.selectedScopeButtonIndex = 0;
-        downloadAndReload()
-        sender.endRefreshing()
+
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        download()
     }
-    
-    func downloadAndReload(){
+        
+    @IBAction func onRefresh(_ sender: Any) {
+        download()
+      }
+        
+    func download(){
         let handler = JSONHandler()
         handler.download(completion: {items in
             if let items = items {
                 self.items = items
                 self.currentItems = items
-                self.updateFavs()
                 self.table.reloadData()
                }
         })
+        
     }
     
     func reloadCell(index: IndexPath) {
@@ -136,32 +128,6 @@ class TechVC: UITableViewController, ArticleCellDelegate,UISearchBarDelegate{
             controller.link = item.link
         }
         
-    }
-
-    func updateFavs(){
-           
-       let favs = loadFavs()
-        
-        if favs.isEmpty {
-            self.items.forEach { $0.isFavorite = false }
-        }else{
-           for i in favs{
-               if let offset = self.items.firstIndex(where: {$0.title == i.title}) {
-                   self.items[offset].isFavorite = true
-               }
-           }
-        }
-        
-       return
-    }
-       
-    func loadFavs() -> [Item]{
-        if let data = UserDefaults.standard.data(forKey: "key"){
-            return try! NSKeyedUnarchiver.unarchiveTopLevelObjectWithData(data) as! [Item]
-        }else{
-            let items = [Item]()
-            return items
-        }
     }
     
 }

@@ -17,6 +17,9 @@ class ChartVC: UIViewController{
     
     @IBOutlet weak var timeLabel: UILabel!
     
+    @IBAction func onRefresh(_ sender: Any) {
+        downloadMakeCht()
+    }
     var categoryList = ["Android",
                         "iOS",
                         "Windows",
@@ -31,21 +34,21 @@ class ChartVC: UIViewController{
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        download()
+        downloadMakeCht()
     }
     
-    func download(){
+    func downloadMakeCht(){
         let dispatchGroup = DispatchGroup()
         let handler = XMLHandler()
         
         dispatchGroup.enter()
         handler.downloadPararrel(completion: { returnData in
             let data = returnData!
-            CommonSetting().saveItems(items: data, key: "article")
+            CommonSetting().saveItems(items: data, key: "secArt")
             dispatchGroup.leave()
         })
         dispatchGroup.notify(queue: .main) {
-            let items = CommonSetting().loadItems(key: "article")
+            let items = CommonSetting().loadItems(key: "secArt")
             self.makeCharts(items: items)
         }
     }
