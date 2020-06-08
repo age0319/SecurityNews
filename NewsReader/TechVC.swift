@@ -101,7 +101,8 @@ class TechVC: UITableViewController, ArticleCellDelegate,UISearchBarDelegate{
         
     @IBAction func onRefresh(_ sender: Any) {
         download()
-      }
+    }
+    
         
     func download(){
         let handler = JSONHandler()

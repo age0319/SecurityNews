@@ -21,6 +21,12 @@ class SettingVC: UITableViewController{
     
     var dataSource = [Source]()
     
+    @IBAction func onRestore(_ sender: Any) {
+        dataSource = CommonSetting().setDefaultSetting()
+        CommonSetting().saveSourceArray(obj: dataSource, key: "source")
+        tableView.reloadData()
+    }
+    
     override func viewDidAppear(_ animated: Bool) {
         dataSource = CommonSetting().loadSourceArray(key: "source")
         tableView.reloadData()
