@@ -10,34 +10,21 @@ import UIKit
 import Charts
 
 
-class ChartVC: UIViewController{
+class ChartVC: UIViewController{    
     
-    @IBOutlet weak var barcht: BarChartView!
-    @IBOutlet weak var piecht: PieChartView!
+    @IBOutlet weak var firstLabel: UILabel!
+    @IBOutlet weak var firstPieCht: PieChartView!
+    @IBOutlet weak var secondLabel: UILabel!
+    @IBOutlet weak var secondPieCht: PieChartView!
     
-    @IBOutlet weak var timeLabel: UILabel!
-    
-    @IBAction func onRefresh(_ sender: Any) {
-        downloadMakeCht()
-    }
-    var categoryList = ["Android",
-                        "iOS",
-                        "Windows",
-                        "Mac",
-                        "Linux",
-                        "IE",
-                        "FireFox",
-                        "Safari",
-                        "Chrome",
-                        "Edge"]
-
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        downloadMakeCht()
+        makeSecCht()
+        makeTechCht()
     }
-    
-    func downloadMakeCht(){
+        
+    func makeSecCht(){
         let dispatchGroup = DispatchGroup()
         let handler = XMLHandler()
         
@@ -49,11 +36,29 @@ class ChartVC: UIViewController{
         })
         dispatchGroup.notify(queue: .main) {
             let items = CommonSetting().loadItems(key: "secArt")
-            self.makeCharts(items: items)
+            self.makeCharts(items: items,category: "セキュリティ")
         }
     }
     
-    func makeCharts(items: [Item]) {
+    func makeTechCht(){
+        let dispatchGroup = DispatchGroup()
+        let handler = JSONHandler()
+        
+        dispatchGroup.enter()
+
+        handler.download(completion: { returnData in
+            let data = returnData!
+            CommonSetting().saveItems(items: data, key: "techArt")
+            dispatchGroup.leave()
+        })
+        dispatchGroup.notify(queue: .main) {
+            let items = CommonSetting().loadItems(key: "techArt")
+            self.makeCharts(items: items,category: "テクノロジー")
+        }
+    }
+
+    
+    func makeCharts(items: [Item], category:String) {
         
         let date = Date()
         let formatter = DateFormatter()
@@ -66,25 +71,31 @@ class ChartVC: UIViewController{
         let todayItems = items.filter({ item -> Bool in
              item.dateString.contains(todayDate)
          })
+        
         let numberOfTodaysArticle = todayItems.count
         
-        timeLabel.text = "今日のセキュリティニュース数" + "(" + todayTime + "):" + String(numberOfTodaysArticle)
+        var sourceList = [String]()
         
-        let dataSource = CommonSetting().loadSourceArray(key: "source")
-        var stats = [(String,Double)]()
-        
-        for source in dataSource{
-            let filtereditems = todayItems.filter({ item -> Bool in
-                item.source.contains(source.name)
-            })
-            let stat = (source.name,Double(filtereditems.count))
-            stats.append(stat)
+        for i in todayItems{
+            sourceList.append(i.source)
         }
         
-        setPieCht(stats: stats)
+        var counts: [String: Double] = [:]
+        sourceList.forEach { counts[$0, default: 0] += 1 }
+        
+        if category == "セキュリティ"{
+            firstLabel.text = "今日の" + category + "ニュース数" + "(" + todayTime + "):" + String(numberOfTodaysArticle)
+            firstPieCht.data = setPieCht(stats: counts)
+            firstPieCht.legend.enabled = true
+        }else if category == "テクノロジー"{
+            secondLabel.text = "今日の" + category + "ニュース数" + "(" + todayTime + "):" + String(numberOfTodaysArticle)
+            secondPieCht.data = setPieCht(stats: counts)
+            secondPieCht.legend.enabled = true
+        }
+        
     }
     
-    func setPieCht(stats:[(String,Double)]){
+    func setPieCht(stats:[String: Double]) -> PieChartData{
         
         var xLabel = [String]()
         var yData = [Double]()
@@ -118,10 +129,8 @@ class ChartVC: UIViewController{
 
         pieChartDataSet.colors = colors
         
-        piecht.data = PieChartData(dataSet: pieChartDataSet)
-        
-        piecht.legend.enabled = true
-        
+        return PieChartData(dataSet: pieChartDataSet)
+                
     }
     
 }

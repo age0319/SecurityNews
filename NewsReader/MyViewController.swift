@@ -10,7 +10,6 @@ import UIKit
 
 class MyViewController: UITableViewController, ArticleCellDelegate,UISearchBarDelegate{
     
-    @IBOutlet weak var spinner: UIActivityIndicatorView!
     @IBOutlet var table: UITableView!
     @IBOutlet weak var search: UISearchBar!
     
