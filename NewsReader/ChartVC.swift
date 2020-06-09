@@ -55,95 +55,44 @@ class ChartVC: UIViewController{
     
     func makeCharts(items: [Item]) {
         
-        var countList = Array(repeating: 10.0, count: categoryList.count)
-        
         let date = Date()
         let formatter = DateFormatter()
-        formatter.dateFormat = "yyyy/MM/dd"
-        
-        timeLabel.text = "今日のセキュリティニュース" + "(" + formatter.string(from: date) + ")"
-        
-//        for (i,category) in categoryList.enumerated(){
-//            let filtereditems = items.filter({ item -> Bool in
-//                item.title.lowercased().contains(category.lowercased())
-//            })
-//            let numberOfArticle = filtereditems.count
-//            countList[i] = Double(numberOfArticle)
-//        }
-        
-        setBarCht(xLabel: categoryList, yData:countList)
-        setPieCht(xLabel: categoryList, yData:countList)
-    }
+        formatter.dateFormat = "MM/dd/HH:mm:ss"
+        let todayTime = formatter.string(from: date)
 
-    
-    func setBarCht(xLabel:[String],yData:[Double]){
-        var entry = [ChartDataEntry]()
+        formatter.dateFormat = "MM/dd"
+        let todayDate = formatter.string(from: date)
+
+        let todayItems = items.filter({ item -> Bool in
+             item.dateString.contains(todayDate)
+         })
+        let numberOfTodaysArticle = todayItems.count
         
-        for (i,d) in yData.enumerated(){
-            if d == 0.0{
-                continue
-            }
-            entry.append(BarChartDataEntry(x: Double(i),y: d))
+        timeLabel.text = "今日のセキュリティニュース数" + "(" + todayTime + "):" + String(numberOfTodaysArticle)
+        
+        let dataSource = CommonSetting().loadSourceArray(key: "source")
+        var stats = [(String,Double)]()
+        
+        for source in dataSource{
+            let filtereditems = todayItems.filter({ item -> Bool in
+                item.source.contains(source.name)
+            })
+            let stat = (source.name,Double(filtereditems.count))
+            stats.append(stat)
         }
         
-        let dataset = BarChartDataSet(entries: entry)
-        dataset.colors = [.systemBlue]
-        dataset.drawValuesEnabled = false
-        
-        barcht.data = BarChartData(dataSet: dataset)
-        
-        // X軸のラベルを設定
-        let xaxis = XAxis()
-        xaxis.valueFormatter = BarChartFormatter(xlabel: xLabel)
-        barcht.xAxis.valueFormatter = xaxis.valueFormatter
-        
-        // Y座標の値が0始まりになるように設定
-        barcht.leftAxis.axisMinimum = 0.0
-        barcht.leftAxis.drawZeroLineEnabled = true
-        barcht.leftAxis.zeroLineColor = .systemGray
-        // ラベルの色を設定
-        barcht.leftAxis.labelTextColor = .systemGray
-        // グリッドの色を設定
-        barcht.leftAxis.gridColor = .systemGray
-        // 軸線は非表示にする
-        barcht.leftAxis.drawAxisLineEnabled = false
-
-        // x軸のラベルをボトムに表示
-        barcht.xAxis.labelPosition = .bottom
-        // X軸のラベルの色を設定
-        barcht.xAxis.labelTextColor = .systemGray
-        // X軸の線、グリッドを非表示にする
-        barcht.xAxis.drawGridLinesEnabled = false
-        barcht.xAxis.drawAxisLineEnabled = false
-
-        // グラフの棒をニョキッとアニメーションさせる
-        barcht.animate(xAxisDuration: 2.0, yAxisDuration: 2.0)
-        
-        // 右側のyラベル表示をなしにする
-        barcht.rightAxis.enabled = false
-        
-        //凡例を消す
-        barcht.legend.enabled = false
-        
+        setPieCht(stats: stats)
     }
     
-    public class BarChartFormatter: NSObject, IAxisValueFormatter{
+    func setPieCht(stats:[(String,Double)]){
         
         var xLabel = [String]()
+        var yData = [Double]()
         
-        public init(xlabel:[String]) {
-            super.init()
-            self.xLabel = xlabel
+        for i in stats{
+            xLabel.append(i.0)
+            yData.append(i.1)
         }
-        
-        // デリゲート。TableViewのcellForRowAtで、indexで渡されたセルをレンダリングするのに似てる。
-        public func stringForValue(_ value: Double, axis: AxisBase?) -> String {
-            // 0 -> Jan, 1 -> Feb...
-            return xLabel[Int(value)]
-        }
-    }
-    
-    func setPieCht(xLabel:[String],yData:[Double]){
         
         var dataEntries: [ChartDataEntry] = []
 
@@ -154,7 +103,7 @@ class ChartVC: UIViewController{
             dataEntries.append( PieChartDataEntry(value: yData[i], label: xLabel[i], data: yData[i]))
         }
 
-        let pieChartDataSet = PieChartDataSet(entries: dataEntries, label: "nothig")
+        let pieChartDataSet = PieChartDataSet(entries: dataEntries, label: "")
 
         var colors: [UIColor] = []
 
@@ -171,7 +120,7 @@ class ChartVC: UIViewController{
         
         piecht.data = PieChartData(dataSet: pieChartDataSet)
         
-        piecht.legend.enabled = false
+        piecht.legend.enabled = true
         
     }
     

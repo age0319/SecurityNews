@@ -481,16 +481,12 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="mfI-Ln-e4w" customClass="BarChartView" customModule="Charts">
-                                <rect key="frame" x="0.0" y="169" width="414" height="258"/>
-                                <color key="backgroundColor" systemColor="opaqueSeparatorColor" red="0.77647058820000003" green="0.77647058820000003" blue="0.7843137255" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                            </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="DR5-xn-Syu" customClass="PieChartView" customModule="Charts">
-                                <rect key="frame" x="0.0" y="436" width="414" height="358"/>
+                                <rect key="frame" x="0.0" y="171" width="414" height="534"/>
                                 <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </view>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tOT-wO-iRU">
-                                <rect key="frame" x="20" y="120" width="374" height="14.5"/>
+                                <rect key="frame" x="20" y="120" width="31" height="14.5"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -498,17 +494,12 @@
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
-                            <constraint firstItem="DR5-xn-Syu" firstAttribute="top" secondItem="mfI-Ln-e4w" secondAttribute="bottom" constant="9" id="0cx-Cd-5bb"/>
-                            <constraint firstItem="Rww-Uu-xcT" firstAttribute="bottom" secondItem="DR5-xn-Syu" secondAttribute="bottom" constant="19" id="1jX-6T-LmV"/>
-                            <constraint firstItem="mfI-Ln-e4w" firstAttribute="top" secondItem="Rww-Uu-xcT" secondAttribute="top" constant="81" id="2w5-9X-rD0"/>
-                            <constraint firstItem="mfI-Ln-e4w" firstAttribute="leading" secondItem="Rww-Uu-xcT" secondAttribute="leading" id="9Yr-8H-2NL"/>
-                            <constraint firstItem="DR5-xn-Syu" firstAttribute="leading" secondItem="mfI-Ln-e4w" secondAttribute="leading" id="D1u-Yx-DAQ"/>
-                            <constraint firstItem="DR5-xn-Syu" firstAttribute="trailing" secondItem="mfI-Ln-e4w" secondAttribute="trailing" id="FWw-ma-jnp"/>
-                            <constraint firstItem="Rww-Uu-xcT" firstAttribute="bottom" secondItem="mfI-Ln-e4w" secondAttribute="bottom" constant="386" id="R3y-7p-9ge"/>
+                            <constraint firstItem="Rww-Uu-xcT" firstAttribute="bottom" secondItem="DR5-xn-Syu" secondAttribute="bottom" constant="108" id="1jX-6T-LmV"/>
+                            <constraint firstItem="DR5-xn-Syu" firstAttribute="centerY" secondItem="bP8-ad-scF" secondAttribute="centerY" constant="-10" id="JQn-ED-ZR2"/>
                             <constraint firstItem="tOT-wO-iRU" firstAttribute="top" secondItem="Rww-Uu-xcT" secondAttribute="top" constant="32" id="ST8-Xr-nM3"/>
                             <constraint firstItem="tOT-wO-iRU" firstAttribute="leading" secondItem="bP8-ad-scF" secondAttribute="leadingMargin" id="aY7-Jb-gGU"/>
-                            <constraint firstItem="mfI-Ln-e4w" firstAttribute="centerX" secondItem="bP8-ad-scF" secondAttribute="centerX" id="mzd-je-mAH"/>
-                            <constraint firstItem="tOT-wO-iRU" firstAttribute="centerX" secondItem="mfI-Ln-e4w" secondAttribute="centerX" id="yyz-Np-1jK"/>
+                            <constraint firstItem="DR5-xn-Syu" firstAttribute="centerX" secondItem="bP8-ad-scF" secondAttribute="centerX" id="arP-Mb-lNN"/>
+                            <constraint firstItem="DR5-xn-Syu" firstAttribute="leading" secondItem="Rww-Uu-xcT" secondAttribute="leading" id="fzE-vy-Ybs"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="Rww-Uu-xcT"/>
                     </view>
@@ -525,7 +516,6 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
-                        <outlet property="barcht" destination="mfI-Ln-e4w" id="YnI-PK-2Po"/>
                         <outlet property="piecht" destination="DR5-xn-Syu" id="RcT-Hr-4ef"/>
                         <outlet property="timeLabel" destination="tOT-wO-iRU" id="bE9-Tn-idj"/>
                     </connections>
