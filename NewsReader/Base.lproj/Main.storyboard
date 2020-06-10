@@ -566,7 +566,18 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="Mcg-ky-ih5"/>
                     </view>
-                    <navigationItem key="navigationItem" title="チャート" id="ebN-l5-Ma4"/>
+                    <navigationItem key="navigationItem" title="チャート" id="ebN-l5-Ma4">
+                        <barButtonItem key="leftBarButtonItem" style="plain" id="Qwy-31-j5i">
+                            <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="cNd-lo-AaG">
+                                <rect key="frame" x="20" y="11" width="81" height="22"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" image="arrow.clockwise" catalog="system"/>
+                                <connections>
+                                    <action selector="onRefresh:" destination="gd1-u1-bDI" eventType="touchUpInside" id="uOt-6E-Y1V"/>
+                                </connections>
+                            </button>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
                         <outlet property="firstLabel" destination="8vY-UJ-dPb" id="NLR-BC-xgU"/>
                         <outlet property="firstPieCht" destination="EPM-7q-jJT" id="FnH-V7-QDh"/>

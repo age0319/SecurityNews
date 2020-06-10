@@ -24,6 +24,11 @@ class ChartVC: UIViewController{
         makeTechCht()
     }
         
+    @IBAction func onRefresh(_ sender: Any) {
+        makeSecCht()
+        makeTechCht()
+    }
+    
     func makeSecCht(){
         let dispatchGroup = DispatchGroup()
         let handler = XMLHandler()
