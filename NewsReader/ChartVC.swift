@@ -97,21 +97,10 @@ class ChartVC: UIViewController{
     
     func setPieCht(stats:[String: Double]) -> PieChartData{
         
-        var xLabel = [String]()
-        var yData = [Double]()
-        
-        for i in stats{
-            xLabel.append(i.0)
-            yData.append(i.1)
-        }
-        
         var dataEntries: [ChartDataEntry] = []
 
-        for (i,d) in yData.enumerated() {
-            if d == 0.0{
-                continue
-            }
-            dataEntries.append( PieChartDataEntry(value: yData[i], label: xLabel[i], data: yData[i]))
+        for i in stats {
+            dataEntries.append( PieChartDataEntry(value: i.1, label: i.0, data: i.1))
         }
 
         let pieChartDataSet = PieChartDataSet(entries: dataEntries, label: "")
@@ -128,8 +117,15 @@ class ChartVC: UIViewController{
         }
 
         pieChartDataSet.colors = colors
+
+        let data = PieChartData(dataSet: pieChartDataSet)
         
-        return PieChartData(dataSet: pieChartDataSet)
+        // 最低値を0に（Double→Int）
+        let formatter = NumberFormatter()
+        formatter.minimumFractionDigits = 0
+        data.setValueFormatter(DefaultValueFormatter(formatter: formatter))
+        
+        return data
                 
     }
     
