@@ -124,7 +124,7 @@ class ChartVC: UIViewController{
         let formatter = NumberFormatter()
         formatter.minimumFractionDigits = 0
         data.setValueFormatter(DefaultValueFormatter(formatter: formatter))
-        
+            
         return data
                 
     }
